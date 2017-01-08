@@ -1,11 +1,9 @@
-mkdir('submit')
-
 %% Problem 1.
 %  Create the following (row) vector:
 %    [ 0, 2, 4, . . . , 30 ].
 %  Answer: Should be written out as A1.dat
 evens = 0:2:30;
-save('submit/A1.dat', 'evens', '-ascii');
+save('A1.dat', 'evens', '-ascii');
 
 %% Problem 2.
 % Create the following (column) vector:
@@ -13,7 +11,7 @@ save('submit/A1.dat', 'evens', '-ascii');
 %
 % Answer: Should be written out as A2.dat
 rando = [ 5 exp(3) sin(2) ]';
-save('submit/A2.dat', 'rando', '-ascii');
+save('A2.dat', 'rando', '-ascii');
 
 %% Problem 3.
 % Use the zeros command to create a 10 × 1 (column) vector of all
@@ -22,4 +20,4 @@ save('submit/A2.dat', 'rando', '-ascii');
 %
 % Answer: Should be written out as A3.dat
 tenZeros = zeros(10,1);
-save('submit/A3.dat', 'tenZeros', '-ascii');
+save('A3.dat', 'tenZeros', '-ascii');
