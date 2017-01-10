@@ -213,43 +213,42 @@
             \end{split} \]
 
           \item
-            By considering each term in isolation, we can see that
-            they seperately satisfy the triangle inequality and are
-            non-negative, so their sum also satisfies the triangle
-            inequality. To pick the most complicated sub-term, we need
-            to show that
+            Let's first consider the sub-terms in isolation. If we can show that they individually satisfy the triangle inequality, then their sum will as well. So we want to show that
+            \begin{align}
+              4|x_1 + y_1| & \leq 4|x_1| + 4|y_1| \label{sub1} \\
+              |x_1 + y_1 - x_2 - y_2 + x_3 + y_3| & \leq |x_1 - x_2 + x_3| + |y_1 - y_2 + y_3| \label{sub2} \\
+              |x_2 + y_2 + x_3 + y_3| & \leq |x_2 + x_3| + |y_2 + y_3| \label{sub3} 
+            \end{align}
+
+            Recalling that for scalars, $|a + b| \leq |a| + |b|$ is
+            satisfied by the absolute value, we can see that
+            (\ref{sub1}) is straighforwardly true. By substitution
+            \begin{gather*}
+              a = x_1 - x_2 + x_3 \\
+              b = y_1 - y_2 + y_3 \\
+            \end{gather*}
+            we can rewrite (\ref{sub2}) as $|a + b| \leq |a| +
+            |b|$. By similar substitution, we can similarly verify
+            (\ref{sub3}) is satisfied. Therefore their sum
             \[
-            |x_1 + y_1 - x_2 - y_2 + x_3 + y_3| \leq |x_1 - x_2 + x_3| + |y_1 - y_2 + y_3|
+            \nsum{\bm{x} + \bm{y}} \leq \nsum{\bm{x}} + \nsum{\bm{y}}
             \]
-            By substituting
-            \[ \begin{split}
-              a &= x_1 - x_2 + x_3 \\
-              b &= y_1 - y_2 + y_3 \\
-            \end{split} \]
-            we can rewrite as
-            \[
-            |a + b| \leq |a| + |b|
-            \]
-            which is satified by the absolute value. $4|x_1|$ and
-            $|x_2 + x_3|$ can similarly be shown to satisfy the
-            triangle inequality.
+            is a valid inequality.
           \end{enumerate}
 	\end{enumerate}
-
-    \newpage
 
 	% Next problem
   \item Find and sketch the closed unit ball in $\R^2$ for the
     infinity norm. Justify your drawing (your answer for this problem
     should be more than just a drawing).
     
-	\solution The set of points in $\R^2$that satisfy $\| \bm{x}
+	\solution The set of points in $\R^2$ that satisfy $\| \bm{x}
     \|_{\infty} = 1$ are those for which either $x_1 = \pm 1$ and
     $|x_2| \leq |x_1|$, or vice versa. This is just a square with
     sides of length 2 centered at the origin.
 
     \begin{center}
-      \includegraphics[scale=0.5]{unit_sphere_supnorm.pdf}
+      \includegraphics[scale=0.4]{unit_sphere_supnorm.pdf}
     \end{center}
 
 
