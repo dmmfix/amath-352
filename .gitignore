@@ -1,1 +1,6 @@
 *.dat
+*.aux
+*.log
+*.out
+.DS_Store
+*.synctex*
