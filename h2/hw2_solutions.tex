@@ -224,14 +224,16 @@
 	  \item $\bbm 7\\8\\9\ebm = -\bbm 1\\2\\3 \ebm + 2 \bbm 4\\5\\6
         \ebm$, it is in the span of this basis.
 
-	  \item $f(x) = 1$ is not in $\vspan(2x^2-2, x+3)$. We can see that
-        any linear combination of the basis functions
+	  \item $f(x) = 1$ is not in $\vspan(2x^2-2, x+3)$. $f$ must have
+        zero coefficients for $x^2$ and $x$, and we can see that any
+        linear combination of the basis functions
         \[
-        \alpha(2x^2 - 2) + \beta(x + 3)
+        \alpha(2x^2 - 2) + \beta(x + 3) = 2 \alpha x^2 + \beta x - (2\alpha + 3\beta)
         \]
-        will have non-zero coefficients for $x^2$ and $x$ unless $\alpha
-        = 0$ and $\beta = 0$. This would force the constant coefficient
-        to 0 as well, yielding $f(x) = 0$ rather than $f(x) = 1$.
+        will have non-zero coefficients for $x^2$ and $x$ unless
+        $\alpha = 0$ and $\beta = 0$. This would force the $(2\alpha +
+        3\beta)$ term to 0 as well, yielding $f(x) = 0$ rather than
+        $f(x) = 1$.
 	  \end{enumerate}
     \end{enumerate}
 
