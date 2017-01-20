@@ -80,7 +80,7 @@
         \]
       \item The zero vector in $\C^2$ is $\bbm 0 \\ 0 \ebm$:
         \[
-        a + \bm{0} = \bbm a_1 + 0 \\ a_2 + 0 \ebm  = \bbm a_1 \\ a_2 \ebm = 0
+        a + \bm{0} = \bbm a_1 + 0 \\ a_2 + 0 \ebm  = \bbm a_1 \\ a_2 \ebm = a
         \]
       \item Because every element $x \in \C$ has an additive inverse
         $-x \in \C$, every element of $\C^2$ also has an additive
@@ -88,12 +88,10 @@
         \[
         a + -a = \bbm a_1 + -a_1 \\ a_2 + -a_2 \ebm = \bbm 0 \\ 0 \ebm = \bm{0}
         \]
-      \item Because $\C$ is closed under scalar multiplication,
-        $\forall x \in R, z \in C, xz \in \C$, $\C^2$ is similarly
+      \item $\forall x \in \R, z \in \C, xz \in \C$, so $\C^2$ is similarly
         closed under scalar multiplication
         \begin{gather}
-          x \in \R \\
-          a \in \C^2 \\
+          x \in \R, a \in \C^2 \\
           x a = \bbm x a_1 \\ x a_2 \ebm
         \end{gather}
         The $x a_i$ terms are complex numbers, so this 2-element vector is in $\C^2$.
@@ -122,10 +120,10 @@
 	  \solution
 
 	  \begin{enumerate}
-	  \item This set is closed under addition and scalar multiplication,
-        and is therefore a linear subspace of $\R^4$. To show that the
-        set is closed under addition, we want to show that $\forall x,y
-        \in W, z = (x + y) \in W$.
+	  \item This set is closed under addition and scalar
+        multiplication, and is therefore a subspace of $\R^4$. To show
+        that the set is closed under addition, we want to show that
+        $\forall x,y \in W, z = (x + y) \in W$.
         \[
         z = (x + y) = \bbm x_1 + y_1 \\ x_2 + y_2 \\ x_3 + y_2 \\ x_4 + y_4 \ebm
         \]
@@ -142,23 +140,32 @@
         &= 0
         \end{split}\]
         To show that it is closed under scalar multiplication, need to
-        show that $\forall \alpha \in \R, x \in W, \alpha x \in W$
+        show that $\forall \alpha \in \R, x \in W$
         \[
         \alpha x = \bbm \alpha x_1 \\ \alpha x_2 \\ \alpha x_3 \\ \alpha x_4 \ebm
         \]
         We want to show that $\alpha x$ satisfies the set criteria:
         \[\begin{split}
         \alpha x_1 + 2 \alpha x_2 &= \alpha (x_1 + 2 x_2) \\
+        &= \alpha 0 \\
         &= 0
         \end{split}\]
         and
         \[\begin{split}
         \alpha x_3 - \alpha x_4 &= \alpha (x_3 - x_4) \\
+        &= \alpha 0 \\
         &= 0
         \end{split}\]
         The set is therefore closed under scalar multiplication.
         
-	  \item This set is not closed under addition. If we take $f(x) = 2$, $(f + f)(2) = 4$, and is therefore not in $W$.
+	  \item This set is not closed under addition. If we take $f(x) =
+        2$, $f$ is clearly in $W$, but
+        \[\begin{split}
+        (f + f)(3) &= f(3) + f(3) \\
+        &= 2 + 2 \\
+        &= 4
+        \end{split} \]
+        is not in $W$.
         
 	  \item $W$ is closed under addition and scalar multiplication and
         is therefore a subspace of $V$. For $f,g \in W$, we need to
@@ -167,7 +174,7 @@
           h(x) &= h(x + 1) \\
           f(x) + g(x) &= f(x + 1) + g(x + 1)
         \end{split} \]
-        Since both $f$ and $g$ are in $W$ we know that
+        Since $f,g \in W$ we know that
         \begin{gather*}
           f(x) = f(x + 1) \\
           g(x) = g(x + 1)
@@ -181,7 +188,7 @@
         \[
         \alpha f = \alpha f(x + 1)
         \]
-        For $\alpha = 0$, this is obviously true, and for $alpha \neq
+        For $\alpha = 0$, this is obviously true, and for $\alpha \neq
         0$, we can simply divide through, which leaves $f =
         f(x + 1)$, which is true since $f \in W$.
         
@@ -217,9 +224,8 @@
 	  \solution
 	  \begin{enumerate}
 	  \item
-        $\bbm 1\\7\ebm = 4 \bbm 1\\2 \ebm - \bbm 3\\1 \ebm$, so it is in
-        the span. More generally, since the basis vectors are linearly
-        independent (observe that $1/3 \neq 2/1$), they span all of $\R^2$.
+        $\bbm 1\\7\ebm = 4 \bbm 1\\2 \ebm - \bbm 3\\1 \ebm$, so it is
+        in the span.
         
 	  \item $\bbm 7\\8\\9\ebm = -\bbm 1\\2\\3 \ebm + 2 \bbm 4\\5\\6
         \ebm$, it is in the span of this basis.
