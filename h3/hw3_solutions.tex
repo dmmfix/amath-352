@@ -1,0 +1,91 @@
+\documentclass[]{article}
+\usepackage{amsmath}		% For generic math symbols
+\usepackage{amssymb}		% For mathbb
+\usepackage{enumerate}		% For lists indexed by letters
+\usepackage{bm}				% For bold letters
+\usepackage{enumitem}		% So we can resume counting problem numbers after
+							% interrupting with section text
+
+\setlength{\parindent}{0pt}	% Turns off indentation
+
+
+% Define some useful commands
+\newcommand{\half}{\frac{1}{2}}			% 1/2
+\newcommand{\R}{\mathbb{R}}				% Reals symbol
+\newcommand{\bbm}{\begin{bmatrix}}		% Begin bmatrix environment
+\newcommand{\ebm}{\end{bmatrix}}		% End bmatrix environment
+\newcommand{\x}{\bm{x}}					% Bold (vector) x
+\newcommand{\y}{\bm{y}}					% Bold (vector) y
+\newcommand{\vspan}{\mathrm{span}}		% To use the word span in math mode
+
+% Place this command after each problem, before solution (examples below)
+\newcommand{\solution}{\vskip 0.5cm \textbf{\large Solution:} \\}
+
+
+\title{AMATH 352: Problem Set 3}
+\author{Your name here}
+
+\begin{document}
+
+\maketitle
+{\Large \textbf{Due: Friday January 27, 2017}}
+
+
+\section*{Instructions:} Complete the following problems. Turn in a write up of these problems digitally (via Canvas) by 5:00pm of the due date.
+
+\hrulefill
+
+\vskip 1cm
+
+\section*{Linear dependence and independence:}
+\begin{enumerate}[resume]
+	\item Determine whether the given vectors or functions are linearly independent. Justify your answers.
+	\begin{enumerate}
+		\item $\bbm -1\\-3\\3 \ebm, \bbm -1\\5\\-3 \ebm$
+		\item $\bbm 1\\1\\1 \ebm, \bbm 1\\2\\1 \ebm, \bbm 2\\1\\2 \ebm$
+		\item $f_1(x)=x^2+3$, $f_2(x) = 1-x$, and $f_3(x) = (x+1)^2$
+		\item $f_1(x)=1$, $f_2(x)=\sin(\pi x)$,and $f_3(x)=\cos(\pi x)$
+
+	\end{enumerate}
+
+	\solution
+	\begin{enumerate}
+		\item Your answer here.
+		\item Your answer here.
+		\item Your answer here.
+		\item Your answer here.
+	\end{enumerate}
+
+	\item Show that the following vectors are linearly independent:
+	\[
+		\bbm a\\0\\0\ebm,\bbm b\\c\\0\ebm,\bbm d\\e\\f\ebm,
+	\]
+	where $a,b,c,d,e,f\in\R$, provided that $a,b,c\neq 0$. Does this set form a basis for $\R^3$? Why or why not?
+
+	\solution
+	Your answer here.
+
+\end{enumerate}
+
+
+\section*{Basis and dimension:}
+\begin{enumerate}[resume]
+
+	\item Find the dimension of and a basis for the following real linear spaces. Justify your answers.
+	\begin{enumerate}
+		\item $S=\left\{\x\in\R^3 : x_1+3x_2-5x_3=0 \right\}$
+		\item $S=\{\x\in\R^3 : x_1=x_3 \}$
+		\item $S = \{p\in\mathcal{P}_3: p(1)=0\}$
+		\item $S = \{p\in\mathcal{P}_3: p(-1)=0, p'(1)=0\}$
+	\end{enumerate}
+
+	\solution
+	\begin{enumerate}
+		\item Your answer here.
+		\item Your answer here.
+		\item Your answer here.
+		\item Your answer here.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}
