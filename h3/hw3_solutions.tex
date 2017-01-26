@@ -4,7 +4,7 @@
 \usepackage{enumerate}		% For lists indexed by letters
 \usepackage{bm}				% For bold letters
 \usepackage{enumitem}		% So we can resume counting problem numbers after
-							% interrupting with section text
+% interrupting with section text
 
 \setlength{\parindent}{0pt}	% Turns off indentation
 
@@ -23,69 +23,208 @@
 
 
 \title{AMATH 352: Problem Set 3}
-\author{Your name here}
+\author{Dave Moore, dmmfix@uw.edu}
 
 \begin{document}
 
 \maketitle
-{\Large \textbf{Due: Friday January 27, 2017}}
+    {\Large \textbf{Due: Friday January 27, 2017}}
 
 
-\section*{Instructions:} Complete the following problems. Turn in a write up of these problems digitally (via Canvas) by 5:00pm of the due date.
+    \section*{Instructions:} Complete the following problems. Turn in a write up of these problems digitally (via Canvas) by 5:00pm of the due date.
 
-\hrulefill
+    \hrulefill
 
-\vskip 1cm
+    \vskip 1cm
 
-\section*{Linear dependence and independence:}
-\begin{enumerate}[resume]
+    \section*{Linear dependence and independence:}
+    \begin{enumerate}[resume]
 	\item Determine whether the given vectors or functions are linearly independent. Justify your answers.
-	\begin{enumerate}
-		\item $\bbm -1\\-3\\3 \ebm, \bbm -1\\5\\-3 \ebm$
-		\item $\bbm 1\\1\\1 \ebm, \bbm 1\\2\\1 \ebm, \bbm 2\\1\\2 \ebm$
-		\item $f_1(x)=x^2+3$, $f_2(x) = 1-x$, and $f_3(x) = (x+1)^2$
-		\item $f_1(x)=1$, $f_2(x)=\sin(\pi x)$,and $f_3(x)=\cos(\pi x)$
+	  \begin{enumerate}
+	  \item $\bbm -1\\-3\\3 \ebm, \bbm -1\\5\\-3 \ebm$
+	  \item $\bbm 1\\1\\1 \ebm, \bbm 1\\2\\1 \ebm, \bbm 2\\1\\2 \ebm$
+	  \item $f_1(x)=x^2+3$, $f_2(x) = 1-x$, and $f_3(x) = (x+1)^2$
+	  \item $f_1(x)=1$, $f_2(x)=\sin(\pi x)$,and $f_3(x)=\cos(\pi x)$
 
-	\end{enumerate}
+	  \end{enumerate}
 
-	\solution
-	\begin{enumerate}
-		\item Your answer here.
-		\item Your answer here.
-		\item Your answer here.
-		\item Your answer here.
-	\end{enumerate}
+	  \solution
+	  \begin{enumerate}
+	  \item These vectors are linearly independent, since we can see
+        that a linear combination equal to 0
+        \[
+        \alpha \bbm -1\\-3\\3 \ebm +  \beta \bbm -1\\5\\-3 \ebm = 0
+        \]
+        means that $-\alpha + -\beta = 0 \implies \alpha = \beta$ from
+        the first component of the sum. But if that is true, the second
+        component
+        \begin{gather*}
+          -3\alpha + 5\beta = 0 \\
+          -3\alpha + 5\alpha = 0 \\
+          2\alpha = 0
+        \end{gather*}
+        implies that $\alpha$ must be zero. Since we know that $\alpha =
+        \beta$, only the trivial combination satisfies the original
+        equation and the vectors are linearly independent.
+
+        
+	  \item
+        \[
+        \left(3\bbm 1\\1\\1 \ebm - \bbm 1\\2\\1 \ebm - \bbm 2\\1\\2
+        \ebm\right) = \bbm 0\\0\\0 \ebm
+        \]
+        Is a non-trivial combination that yields $\bm{0}$, so these vectors are not linearly
+        independent.
+
+	  \item These elements of $\mathcal{P}^2$ are not linearly
+        dependent. If we evaluate
+        \[
+        \alpha f_1 + \beta f_2 + \delta f_3
+        \]
+        with $\alpha = 1, \beta = -2, \delta = -1$, we find
+        \[\begin{split}
+        \alpha f_1 + \beta f_2 + \delta f_3 &= (x^2 + 3) - 2(1 - x) - (x + 1)^2 \\
+        &= x^2 + 3 - 2 + 2x - (x^2 + 2x + 1) \\
+        &= x^2 - x^2 + 2x - 2x + 3 - 2 - 1 \\
+        &= 0
+        \end{split}\]
+        Since this is a non-trivial combination, the functions are
+        not linearly independent.
+        
+	  \item Looking for $\alpha, \beta, \delta \in \R$ such that
+        \[
+        \alpha + \beta sin(\pi x) + \delta cos(\pi x) = 0
+        \]
+        This must hold $\forall x \in \R$. If we take $x = 0$, we
+        find that
+        \[
+        \alpha + \beta 0 + \delta 1 = 0 \implies \delta = -\alpha
+        \]
+        If we take $x = 1$, we find
+        \[
+        \alpha + \beta 1 + \delta 0 = 0 \implies \beta = -\alpha
+        \]
+        Evaluating at, say $x = 1/4$, we find
+        \begin{gather*}
+          \alpha + \frac{2}{\sqrt{2}}\beta + \frac{2}{\sqrt{2}}\delta = 0 \\
+          (1 - \sqrt{2})\alpha = 0
+        \end{gather*}
+        Only $\alpha = 0$, and therefore $\beta = 0, \delta = 0$
+        satisfy this equation. Since only the trivial combination
+        yields $\bm{0}$, the functions are linearly independent.
+        
+        
+        
+	  \end{enumerate}
 
 	\item Show that the following vectors are linearly independent:
-	\[
-		\bbm a\\0\\0\ebm,\bbm b\\c\\0\ebm,\bbm d\\e\\f\ebm,
-	\]
-	where $a,b,c,d,e,f\in\R$, provided that $a,b,c\neq 0$. Does this set form a basis for $\R^3$? Why or why not?
+	  \[
+	  \bbm a\\0\\0\ebm,\bbm b\\c\\0\ebm,\bbm d\\e\\f\ebm,
+	  \]
+	  where $a,b,c,d,e,f\in\R$, provided that $a,b,f\neq 0$. Does this set form a basis for $\R^3$? Why or why not?
 
-	\solution
-	Your answer here.
+	  \solution
 
-\end{enumerate}
+	  Since $dim(\R^3) = 3$, and we have 3 basis vectors, it suffices
+      to show that they are linearly independent. By working
+      backwards, we can show that no $\alpha, \beta, \delta \in \R$
+      satisfies the equation
+      \[
+      \alpha \bbm a\\0\\0\ebm + \beta \bbm b\\c\\0\ebm + \delta \bbm d\\e\\f\ebm = \bbm 0\\0\\0 \ebm
+      \]
+      other than the trivial solution. If we examine only the $x_3$
+      component of the sum, we can see that $\delta f = 0 \implies
+      \delta = 0$. But in that case, $\beta c = 0$ as well, since the
+      second component becomes
+      \[
+      \beta c + \delta e = \beta c = 0 \implies \beta = 0
+      \]
+      We can similarly argue that $\alpha$ must 0. Only the trivial
+      combination satisfies the relation, the set is linearly
+      indepedent, and forms a basis for $\R^3$.
+
+    \end{enumerate}
 
 
-\section*{Basis and dimension:}
-\begin{enumerate}[resume]
+    \section*{Basis and dimension:}
+    \begin{enumerate}[resume]
 
 	\item Find the dimension of and a basis for the following real linear spaces. Justify your answers.
-	\begin{enumerate}
-		\item $S=\left\{\x\in\R^3 : x_1+3x_2-5x_3=0 \right\}$
-		\item $S=\{\x\in\R^3 : x_1=x_3 \}$
-		\item $S = \{p\in\mathcal{P}_3: p(1)=0\}$
-		\item $S = \{p\in\mathcal{P}_3: p(-1)=0, p'(1)=0\}$
-	\end{enumerate}
+	  \begin{enumerate}
+	  \item $S=\left\{\x\in\R^3 : x_1+3x_2-5x_3=0 \right\}$
+	  \item $S=\{\x\in\R^3 : x_1=x_3 \}$
+	  \item $S = \{p\in\mathcal{P}_3: p(1)=0\}$
+	  \item $S = \{p\in\mathcal{P}_3: p(-1)=0, p'(1)=0\}$
+	  \end{enumerate}
 
-	\solution
-	\begin{enumerate}
-		\item Your answer here.
-		\item Your answer here.
-		\item Your answer here.
-		\item Your answer here.
-	\end{enumerate}
-\end{enumerate}
+	  \solution
+	  \begin{enumerate}
+	  \item By starting with $x_1 = 1$, we can immediately find two
+        basis vectors by holding $x_2$ or $x_3$ to 0.
+        \[
+        \bbm 1 \\ -1/3 \\ 0 \ebm, \bbm 1 \\ 0 \\ -1/5 \ebm
+        \]
+        We started with $dim(\R^3) = 3$ and added one constraint, so we
+        would expect $dim(S) = 2$.
+
+        Checking: TODO!
+        
+	  \item If we chose $x_1 = 1$ and $x_1 = 0$ as our starting
+        points, we can immediately generate two basis vectors
+        \[
+        \bbm 1\\\alpha\\1 \ebm, \bbm 0\\\beta\\0 \ebm
+        \]
+        we know that $\beta \neq 0$, if it were, the second basis
+        vector would be $\bm{0}$ which is disallowed. We can
+        arbitrarily add $[1 0 1]^t$ to the set. To show that we then
+        cannot add another basis vector for $\alpha \neq 0$, observe
+        that if we did, we could form the sum
+        \[
+        a \bbm 1\\ 0 \\1 \ebm + b \bbm 1\\ \alpha \\1 \ebm + c \bbm 0\\ 1 \\0 \ebm = 0
+        \]
+        By selecting $a = -b$ and $c = -\alpha$, we can create a
+        non-trivial combination summing to $\bm{0}$. Therefore
+        \[
+        \bbm 1\\ 0 \\1 \ebm, \bbm 0\\ 1 \\0 \ebm
+        \]
+        Is a basis for $S$.
+
+
+      \item $p$ has the form $a + bx + cx^2 + dx^3$. If we evaluate
+        this at 1, we find that our constraint is $a + b + c + d =
+        0$. By setting $a = 1$, and holding all but one of the other
+        components to zero, we can find 3 basis functions
+        \[
+          1 - x, 1 - x^2, 1 - x^3
+        \]
+        Checking: TODO!
+        
+	  \item $p$ has the form $a + bx + cx^2 + dx^3$, which implies
+        that $p' = b + 2cx + 3dx^2$. By evaluating our constraints, we
+        find that
+        \begin{gather*}
+          a - b + c - d = 0 \\
+          b + 2c + 3d = 0
+        \end{gather*}
+        Beginning with $a = 1, c = -1$, we can see that by
+        substitution, $b + d = 0$ and $b + 3d = 2$. By subtracting, we
+        see that $2d = 2 \implies d = 1$, which means that $b = -1$,
+        giving us
+        \[
+        1 - x - x^2 + x^3
+        \]
+        as our first basis function.
+
+        Choosing $a = 1, b = 1$, we conclude that $c = d$ and $b = -5c
+        \implies c = -1/5$ which yields
+        \[
+        1 + x - \frac{1}{5}x^2 - \frac{1}{5}x^3
+        \]
+        as our second basis function.
+
+        Checking: TODO!
+        
+	  \end{enumerate}
+    \end{enumerate}
 
 \end{document}
