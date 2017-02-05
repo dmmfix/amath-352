@@ -4,7 +4,7 @@
 \usepackage{enumerate}		% For lists indexed by letters
 \usepackage{bm}				% For bold letters
 \usepackage{enumitem}		% So we can resume counting problem numbers after
-							% interrupting with text
+% interrupting with text
 \usepackage{hyperref}		% For clickable URL links
 \usepackage{url}			% So file names won't create hboxes
 
@@ -26,79 +26,128 @@
 
 
 \title{AMATH 352: Problem Set 4}
-\author{Your name here}
+\author{Dave Moore, dmmfix@uw.edu}
 
 \begin{document}
 
 \maketitle
-{\Large \textbf{Due: Friday February 10, 2017}} \\
+    {\Large \textbf{Due: Friday February 10, 2017}} \\
 
-\vskip 1cm
+    \vskip 1cm
 
-\section*{Linear functions}
-\begin{enumerate}
+    \section*{Linear functions}
+    \begin{enumerate}
 	\item The following linear functions can be written as $\bm{f}(\x)=\A\x$ for some matrix $\A$ (not necessarily square). In each case, determine $\A$.
-	\begin{enumerate}
-		\item $\bm{f}(\x) = \bbm 3x_1-2x_2\\4x_2-x_3 \ebm,\quad\forall\x\in\R^3$.
-		\item $\bm{f}(\x) = \bbm x_3\\x_4\\x_2\\x_1 \ebm,\quad\forall\x\in\R^4$.
-		\item $\bm{f}(\x) = 2x_1-4x_3+5x_4,\quad\forall\x\in\R^4$.
-		\item $\bm{f}(\x) = \bbm x_1\cos(\theta)+x_3\sin(\theta)\\x_2\\-x_1\sin(\theta)+x_3\cos(\theta) \ebm,\quad\forall\x\in\R^3$, for some fixed\\ $\theta\in[0,2\pi)$. This type of matrix is called a rotation matrix.
-	\end{enumerate}
+	  \begin{enumerate}
+	  \item $\bm{f}(\x) = \bbm 3x_1-2x_2\\4x_2-x_3 \ebm,\quad\forall\x\in\R^3$.
+	  \item $\bm{f}(\x) = \bbm x_3\\x_4\\x_2\\x_1 \ebm,\quad\forall\x\in\R^4$.
+	  \item $\bm{f}(\x) = 2x_1-4x_3+5x_4,\quad\forall\x\in\R^4$.
+	  \item $\bm{f}(\x) = \bbm x_1\cos(\theta)+x_3\sin(\theta)\\x_2\\-x_1\sin(\theta)+x_3\cos(\theta) \ebm,\quad\forall\x\in\R^3$, for some fixed\\ $\theta\in[0,2\pi)$. This type of matrix is called a rotation matrix.
+	  \end{enumerate}
 
-	\solution
-	\begin{enumerate}
-		\item Your solution here 
-		\item Your solution here
-		\item Your solution here
-		\item Your solution here
-	\end{enumerate}
-\end{enumerate}
+	  \solution
+	  \begin{enumerate}
+	  \item $\bm{A} = \bbm 3 & -2 & 0 \\ 0 & 4 & -1 \ebm$
+	  \item $\bm{A} = \bbm 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 1 & 0 & 0 \\ 1 & 0 & 0 & 0 \ebm$
+	  \item $\bm{A} = \bbm 2 & 0 & -4 & 5 \ebm$
+	  \item $\bm{A} = \bbm cos(\theta) & 0 & sin(\theta) \\ 0 & 1 & 0 \\ -sin(\theta) & 1 & cos(\theta) \ebm$
+	  \end{enumerate}
+    \end{enumerate}
 
 
-\section*{Range, Rank, and Nullspace of a matrix:}
-\begin{enumerate}[resume]
+    \section*{Range, Rank, and Nullspace of a matrix:}
+    \begin{enumerate}[resume]
 	\item Compute the rank, dimension of the nullspace, and a basis of the nullspace for the following matrices:
-	\begin{enumerate}
-		\item $\A = \bbm 1&0&0\\0&1&0\\0&0&1 \ebm$
-		\item $\A = \bbm 0&1&0\\0&0&1\\0&0&0 \ebm$
-		\item $\A = \bbm 1&0\\-1&-1\\0&1 \ebm$
-		\item $\A = \bbm 1&4&7\\2&5&8\\3&6&9 \ebm$
-	\end{enumerate}
+	  \begin{enumerate}
+	  \item $\A = \bbm 1&0&0\\0&1&0\\0&0&1 \ebm$
+	  \item $\A = \bbm 0&1&0\\0&0&1\\0&0&0 \ebm$
+	  \item $\A = \bbm 1&0\\-1&-1\\0&1 \ebm$
+	  \item $\A = \bbm 1&4&7\\2&5&8\\3&6&9 \ebm$
+	  \end{enumerate}
 
-	\solution
-	\begin{enumerate}
-		\item Your solution here
-		\item Your solution here
-		\item Your solution here
-		\item Your solution here
-	\end{enumerate}
+	  \solution
+	  \begin{enumerate}
+	  \item rank($\A$) = 3, since the columns are simply $\bm{e}_{1-3}$,
+        which are linearly independent. There is therefore no
+        non-trivial null-space for A.
+        
+	  \item Column 1 is simply the zero vector, which is always
+        linearly dependent. Cols 2 and 3 are $\bm{e}_1$ and
+        $\bm{e}_2$, which are independent, so rank($\A$) = 2.
+
+        Since there are no non-zero entries in the first column, we
+        can see that any vector of the form $ \bbm \alpha & 0 & 0 \ebm^t$ will map
+        to $\bm{0}$. Since dim(null($\A$)) = 1 by the rank-nullity
+        theorem, $\bbm 1 & 0 & 0 \ebm^t$ is a basis for the nullspace of $\A$.
+
+      \item The columns are not scalar multiples of each other, so
+        rank($\A$) = 2. By the rank-nullity theorem, the dimension
+        of the nullspace must be zero, since $\A \in \R^{3x2}$.
+
+	  \item rank($\A$) = 2, since
+        \[
+         -\bbm 1 \\ 2 \\ 3 \ebm + 2 \bbm 4 \\ 5 \\ 6 \ebm - \bbm 7 \\ 8 \\ 9 \ebm = \bm{0}
+        \]
+        so the columns are not linearly independent. However, $\bbm 1
+        & 2 & 3 \ebm^t$ and $\bbm 4 & 5 & 6 \ebm^t$ are not scalar
+        multiples, so {\em are} linearly independent. Rank-nullity
+        shows that the dimension of the nullspace must be 1, since
+        $\A \in \R^{3x3}$.
+
+        We note from the above equation that any vector of the form
+        \[
+        \bm{x} = \alpha \bbm -1 \\ 2 \\ -1 \ebm
+        \]
+        will yield $\bm{Ax} = \bm{0}$, so $\bbm -1 & 2 & -1 \ebm^t \in
+        null(\A)$. Since we know the dimension of the null space
+        is 1, this forms a basis for the null space of $\A$.
+        
+	  \end{enumerate}
 
 	\item Consider the matrix
-	\[
-		\A = \bm{uv}
-	\]
-	where $\bm{u}\in\R^{n\times 1}$, $\bm{v}\in\R^{1\times m}$, and neither $\bm{u}$ nor $\bm{v}$ is the zero vector. If we view $\bm{u}$ and $\bm{v}$ as column and row vectors, respectively, then $\A$ is called the \textit{outer product} of $\bm{u}$ and $\bm{v}$. Find the rank of $\A$ and a basis for the range of $\A$.
+	  \[
+	  \A = \bm{uv}
+	  \]
+	  where $\bm{u}\in\R^{n\times 1}$, $\bm{v}\in\R^{1\times m}$, and
+      neither $\bm{u}$ nor $\bm{v}$ is the zero vector. If we view
+      $\bm{u}$ and $\bm{v}$ as column and row vectors, respectively,
+      then $\A$ is called the \textit{outer product} of $\bm{u}$ and
+      $\bm{v}$. Find the rank of $\A$ and a basis for the range of
+      $\A$.
 
-	\solution
-	Your solution here
+	  \solution The columns of $\A$ are simply $u_i * \bm{v}$, so they
+      are linearly dependent, since they are simply scalar multiples
+      of $\bm{v}$. This implies that rank($\A$) = 1, since $\bm{v}
+      \neq \bm{0}$, and that $\bm{v}$ is a basis for the range of
+      $\A$.
+
 
 
 	\item Consider a real matrix $\A\in\R^{m\times n}$ with $m\geq n$. Suppose $\A$ is full rank, i.e. rank$(\A)=n$. Find the nullspace of $\A$.
 
-	\solution
-	Your solution here
+	  \solution By the rank-nullity theorem, $dim(null(\A)) + rank(\A)
+      = n$, since $\A \in \R^{mxn}$. This means that there is no
+      non-trivial nullspace for $\A$, that is, $null(\A) =
+      \bm{0}$.
 
 
-\end{enumerate}
+    \end{enumerate}
 
-\section*{Transpose and adjoint of a matrix:}
-\begin{enumerate}[resume]
+    \section*{Transpose and adjoint of a matrix:}
+    \begin{enumerate}[resume]
 	\item What can you say about the diagonal entries of a skew-symmetric matrix? How about the diagonal entries of a complex hermitian matrix?
 
-	\solution
-	Your solution here
+	  \solution For a skew-symmetric matrix, $x_{ij} = -x_{ji}$, so
+      any diagonal entry (where $i = j$), must be 0, since only
+      $x_{ii} = 0$ satisfies $x_{ii} = -x_{ii}$.
 
-\end{enumerate}
+      A complex hermitian matrix satisfies $x_{ij} = {x_{ji}}^*$,
+      where $\cdot ^ *$ denotes the complex conjugate. so the diagonal
+      entries satisfy $x_{ii} = {x_{ii}}^*$, that is, each diagonal
+      entry is equal to it's conjugate. This describes any complex
+      number with only a real component, $a + i0, \forall a \in \R$.
+
+    \end{enumerate}
 
 
 \end{document}
