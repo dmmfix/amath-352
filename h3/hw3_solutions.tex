@@ -53,7 +53,7 @@
 	  \item These vectors are linearly independent, since we can see
         that a linear combination equal to 0
         \[
-        \alpha \bbm -1\\-3\\3 \ebm +  \beta \bbm -1\\5\\-3 \ebm = 0
+        \alpha \bbm -1\\-3\\3 \ebm +  \beta \bbm -1\\5\\-3 \ebm = \bm{0}
         \]
         means that $-\alpha + -\beta = 0 \implies \alpha = \beta$ from
         the first component of the sum. But if that is true, the second
@@ -77,7 +77,7 @@
         independent.
 
 	  \item These elements of $\mathcal{P}^2$ are not linearly
-        dependent. If we evaluate
+        independent. If we evaluate
         \[
         \alpha f_1 + \beta f_2 + \delta f_3
         \]
@@ -106,11 +106,11 @@
         \]
         Evaluating at, say $x = 1/4$, we find
         \begin{gather*}
-          \alpha + \frac{2}{\sqrt{2}}\beta + \frac{2}{\sqrt{2}}\delta = 0 \\
+          \alpha - \frac{2}{\sqrt{2}}\beta - \frac{2}{\sqrt{2}}\delta = 0 \\
           (1 - \sqrt{2})\alpha = 0
         \end{gather*}
         Only $\alpha = 0$, and therefore $\beta = 0, \delta = 0$
-        satisfy this equation. Since only the trivial combination
+        satisfies this equation. Since only the trivial combination
         yields $\bm{0}$, the functions are linearly independent.
         
         
@@ -139,9 +139,8 @@
       \[
       \beta c + \delta e = \beta c = 0 \implies \beta = 0
       \]
-      We can similarly argue that $\alpha$ must 0. Only the trivial
-      combination satisfies the relation, the set is linearly
-      indepedent, and forms a basis for $\R^3$.
+      We can similarly argue that $\alpha$ must 0, so the set is
+      linearly indepedent, and forms a basis for $\R^3$.
 
     \end{enumerate}
 
@@ -162,13 +161,34 @@
 	  \item By starting with $x_1 = 1$, we can immediately find two
         basis vectors by holding $x_2$ or $x_3$ to 0.
         \[
-        \bbm 1 \\ -1/3 \\ 0 \ebm, \bbm 1 \\ 0 \\ -1/5 \ebm
+        \bbm 1 \\ -1/3 \\ 0 \ebm, \bbm 1 \\ 0 \\ 1/5 \ebm
         \]
-        We started with $dim(\R^3) = 3$ and added one constraint, so we
-        would expect $dim(S) = 2$.
+        We started with $dim(\R^3) = 3$ and added one constraint, so
+        we would expect $dim(S) = 2$, but let's attempt to add another
+        vector to the set.
+        \[
+        \alpha \bbm 1 \\ -1/3 \\ 0 \ebm + \beta \bbm 1 \\ 0 \\ 1/5 \ebm + \delta \bbm a \\ b \\ c \ebm = 0
+        \]
+        so we have
+        \begin{gather*}
+          \alpha + \beta + \delta a = 0 \\
+          -\alpha + 3 \delta b = 0 \\
+          \beta + 5 \delta c = 0
+        \end{gather*}
+        The last two equations imply
+        \begin{gather*}
+          \alpha = 3 \delta b \\
+          \beta = - 5 \delta c
+        \end{gather*}
+        By substitution, we find that the first equation becomes
+        \[
+        3 \delta b - 5\delta c + \delta a = \delta(a + 3b - 5c) = 0
+        \]
+        Because we know that $(a + 3b - 5c) = 0$, since $[a b c]^t \in
+        S$, we can find a non-trivial combination with
+        ($\alpha,\beta,\delta \neq 0$) with this arbitrary element of
+        $S$. So the two vectors already form a basis for $S$.
 
-        Checking: TODO!
-        
 	  \item If we chose $x_1 = 1$ and $x_1 = 0$ as our starting
         points, we can immediately generate two basis vectors
         \[
@@ -176,9 +196,9 @@
         \]
         we know that $\beta \neq 0$, if it were, the second basis
         vector would be $\bm{0}$ which is disallowed. We can
-        arbitrarily add $[1 0 1]^t$ to the set. To show that we then
-        cannot add another basis vector for $\alpha \neq 0$, observe
-        that if we did, we could form the sum
+        arbitrarily choose $\alpha = 0$ and add $[1 0 1]^t$ to the
+        set. To show that we then cannot add another basis vector for
+        $\alpha \neq 0$, observe that if we did, we could form the sum
         \[
         a \bbm 1\\ 0 \\1 \ebm + b \bbm 1\\ \alpha \\1 \ebm + c \bbm 0\\ 1 \\0 \ebm = 0
         \]
@@ -187,17 +207,45 @@
         \[
         \bbm 1\\ 0 \\1 \ebm, \bbm 0\\ 1 \\0 \ebm
         \]
-        Is a basis for $S$.
-
+        is a basis for $S$.
 
       \item $p$ has the form $a + bx + cx^2 + dx^3$. If we evaluate
         this at 1, we find that our constraint is $a + b + c + d =
         0$. By setting $a = 1$, and holding all but one of the other
         components to zero, we can find 3 basis functions
+        \[\begin{split}
+        f_1 &= 1 - x \\
+        f_2 &= 1 - x^2 \\
+        f_3 &= 1 - x^3
+        \end{split}\]
+        To prove this is a sufficient basis, let's see if we are
+        unable do find a non-trivial combination if we add another
+        arbitrary member of $S$ to this set. So for $f = \alpha +
+        \beta x + \gamma x^2 + \delta x^3 \in S$, we need to show that
         \[
-          1 - x, 1 - x^2, 1 - x^3
+        a f_1 + b f_2 + c f_3 + d f = 0
         \]
-        Checking: TODO!
+        Has no solutions other than the trivial one. If we consider
+        each coefficient of the resulting polynomial indepedently, we
+        find that the following relations must hold for all $x$.
+        \begin{gather*}
+          a + b + c + d \alpha = 0 \\
+          -a + d \beta = 0 \\
+          -b + d \gamma = 0 \\
+          -c + d \delta = 0
+        \end{gather*}
+        We can satisfy the last 3 equations for $d \neq 0$ with
+        \begin{gather*}
+          a  = d \beta \\
+          b  = d \gamma \\
+          c  = d \delta
+        \end{gather*}
+        By substitution in the first equation, it reduces to $d
+        (\alpha + \beta + \gamma + \delta) = 0$ Because $f \in S$,
+        this will hold for any value, including $d \neq 0$. This means
+        that we cannot add any further members of $S$ to the set
+        without making it linearly dependent. $f_{1-3}$ form a basis
+        for $S$.
         
 	  \item $p$ has the form $a + bx + cx^2 + dx^3$, which implies
         that $p' = b + 2cx + 3dx^2$. By evaluating our constraints, we
@@ -211,18 +259,66 @@
         see that $2d = 2 \implies d = 1$, which means that $b = -1$,
         giving us
         \[
-        1 - x - x^2 + x^3
+        f_1 = 1 - x - x^2 + x^3
         \]
         as our first basis function.
 
         Choosing $a = 1, b = 1$, we conclude that $c = d$ and $b = -5c
-        \implies c = -1/5$ which yields
+        \implies c = -1/5$ which yields (scaling by 5 for simplicity)
         \[
-        1 + x - \frac{1}{5}x^2 - \frac{1}{5}x^3
+        f_2 = 5 + 5x - x^2 - x^3
         \]
         as our second basis function.
 
-        Checking: TODO!
+        Let's confirm that these are a complete basis by adding an
+        arbitrary element and see if we can form a non-trivial
+        combination yielding $\bm{0}$. If we examine the coefficients
+        of the sum with $f = \alpha + \beta x + \gamma x^2 + \delta
+        x^3 \in S$
+        \[
+        a f_1 + b f_2 + c f = 0
+        \]
+        We find the following equations must hold
+        \[\begin{split}
+        a + 5b + c \alpha &= 0 \\
+        -a + 5b + c \beta &= 0 \\
+        -a - b + c \gamma &= 0 \\
+         a - b + c \delta &= 0
+        \end{split}\]
+        and by adding
+        \[\begin{split}
+        10b + c(\alpha + \beta) = 0 &\implies b = \frac{-c(\alpha + \beta)}{10} \\
+        -2a + c(\gamma - \delta) = 0 &\implies a = \frac{c(\gamma - \delta)}{2} \\
+        \end{split}\]
+        Turning the crank and substituting in the original set of
+        equations, we find
+        \[\begin{split}
+        \frac{c(\gamma - \delta)}{2} + 5 \frac{-c(\alpha + \beta)}{10} + c \alpha &= 0 \\
+        -\frac{c(\gamma - \delta)}{2} + 5 \frac{-c(\alpha + \beta)}{10} + c \beta &= 0 \\
+        -\frac{c(\gamma - \delta)}{2} - \frac{-c(\alpha + \beta)}{10} + c \gamma &= 0 \\
+        \frac{c(\gamma - \delta)}{2} - \frac{-c(\alpha + \beta)}{10} + c \delta &= 0
+        \end{split}\]
+        Pulling out $c$ and simplifying:
+        \[\begin{split}
+        c \left((\gamma - \delta) - (\alpha + \beta) + 2 \alpha\right) &= c \left(\alpha - \beta + \gamma - \delta\right) = 0 \\
+        c\left(-(\gamma - \delta) -(\alpha + \beta) + 2 \beta\right) &= -c \left(\alpha - \beta + \gamma - \delta \right) = 0 \\
+        c \left(-5(\gamma - \delta) + (\alpha + \beta) + 10 \gamma\right) &= c\left(\alpha + \beta + 5\gamma  + 5\delta\right) = 0 \\
+        c\left(5(\gamma - \delta) + (\alpha + \beta) + 10 \delta\right) &= c(\alpha + \beta + 5 \gamma + 5 \delta) = 0
+        \end{split}\]
+        Note that the first two lines are immediately of the form $c
+        \times 0$, since we know all of the parts in parentheses are
+        0, since $f \in S$. So those two lines are satisfied for any $c$.
+
+        For the last two parentheticals, we can subtract $(\alpha -
+        \beta + \gamma - \delta)$ since we know $f \in S$. So for
+        instance, the last line becomes
+        \[
+        (\alpha + \beta + 5 \gamma + 5 \delta) - (\alpha - \beta + \gamma - \delta) = (2\beta + 4\gamma + 6 \delta)
+        \]
+        The last parentheticals are simply $2(\beta + 2\gamma +
+        3\delta)$, which we know equals 0. So we can find a
+        non-trivial combination summing to 0, since these are
+        satisfied for $c \neq 0$, and $f_1, f_2$ form a basis for $S$.
         
 	  \end{enumerate}
     \end{enumerate}
