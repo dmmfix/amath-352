@@ -1,0 +1,104 @@
+\documentclass[]{article}
+\usepackage{amsmath}		% For generic math symbols
+\usepackage{amssymb}		% For mathbb
+\usepackage{enumerate}		% For lists indexed by letters
+\usepackage{bm}				% For bold letters
+\usepackage{enumitem}		% So we can resume counting problem numbers after
+							% interrupting with text
+\usepackage{hyperref}		% For clickable URL links
+\usepackage{url}			% So file names won't create hboxes
+
+\setlength{\parindent}{0pt}	% Turns off indentation
+
+
+% Set some useful commands
+\newcommand{\half}{\frac{1}{2}}			% 1/2
+\newcommand{\R}{\mathbb{R}}				% Reals symbol
+\newcommand{\bbm}{\begin{bmatrix}}		% Begin bmatrix environment
+\newcommand{\ebm}{\end{bmatrix}}		% End bmatrix environment
+\newcommand{\x}{\bm{x}}					% Bold (vector) x
+\newcommand{\y}{\bm{y}}					% Bold (vector) y
+\newcommand{\A}{\bm{A}}					% Bold (matrix) A
+\newcommand{\vspan}{\mathrm{span}}		% To use the word span in math mode
+
+% Place this command after each problem, before solution (examples below)
+\newcommand{\solution}{\vskip 0.5cm \textbf{\large Solution:} \\}
+
+
+\title{AMATH 352: Problem Set 4}
+\author{Your name here}
+
+\begin{document}
+
+\maketitle
+{\Large \textbf{Due: Friday February 10, 2017}} \\
+
+\vskip 1cm
+
+\section*{Linear functions}
+\begin{enumerate}
+	\item The following linear functions can be written as $\bm{f}(\x)=\A\x$ for some matrix $\A$ (not necessarily square). In each case, determine $\A$.
+	\begin{enumerate}
+		\item $\bm{f}(\x) = \bbm 3x_1-2x_2\\4x_2-x_3 \ebm,\quad\forall\x\in\R^3$.
+		\item $\bm{f}(\x) = \bbm x_3\\x_4\\x_2\\x_1 \ebm,\quad\forall\x\in\R^4$.
+		\item $\bm{f}(\x) = 2x_1-4x_3+5x_4,\quad\forall\x\in\R^4$.
+		\item $\bm{f}(\x) = \bbm x_1\cos(\theta)+x_3\sin(\theta)\\x_2\\-x_1\sin(\theta)+x_3\cos(\theta) \ebm,\quad\forall\x\in\R^3$, for some fixed\\ $\theta\in[0,2\pi)$. This type of matrix is called a rotation matrix.
+	\end{enumerate}
+
+	\solution
+	\begin{enumerate}
+		\item Your solution here 
+		\item Your solution here
+		\item Your solution here
+		\item Your solution here
+	\end{enumerate}
+\end{enumerate}
+
+
+\section*{Range, Rank, and Nullspace of a matrix:}
+\begin{enumerate}[resume]
+	\item Compute the rank, dimension of the nullspace, and a basis of the nullspace for the following matrices:
+	\begin{enumerate}
+		\item $\A = \bbm 1&0&0\\0&1&0\\0&0&1 \ebm$
+		\item $\A = \bbm 0&1&0\\0&0&1\\0&0&0 \ebm$
+		\item $\A = \bbm 1&0\\-1&-1\\0&1 \ebm$
+		\item $\A = \bbm 1&4&7\\2&5&8\\3&6&9 \ebm$
+	\end{enumerate}
+
+	\solution
+	\begin{enumerate}
+		\item Your solution here
+		\item Your solution here
+		\item Your solution here
+		\item Your solution here
+	\end{enumerate}
+
+	\item Consider the matrix
+	\[
+		\A = \bm{uv}
+	\]
+	where $\bm{u}\in\R^{n\times 1}$, $\bm{v}\in\R^{1\times m}$, and neither $\bm{u}$ nor $\bm{v}$ is the zero vector. If we view $\bm{u}$ and $\bm{v}$ as column and row vectors, respectively, then $\A$ is called the \textit{outer product} of $\bm{u}$ and $\bm{v}$. Find the rank of $\A$ and a basis for the range of $\A$.
+
+	\solution
+	Your solution here
+
+
+	\item Consider a real matrix $\A\in\R^{m\times n}$ with $m\geq n$. Suppose $\A$ is full rank, i.e. rank$(\A)=n$. Find the nullspace of $\A$.
+
+	\solution
+	Your solution here
+
+
+\end{enumerate}
+
+\section*{Transpose and adjoint of a matrix:}
+\begin{enumerate}[resume]
+	\item What can you say about the diagonal entries of a skew-symmetric matrix? How about the diagonal entries of a complex hermitian matrix?
+
+	\solution
+	Your solution here
+
+\end{enumerate}
+
+
+\end{document}
