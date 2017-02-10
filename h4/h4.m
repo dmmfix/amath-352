@@ -7,7 +7,7 @@ save('A1.dat', 'A', '-ascii');
 save('A2.dat', 'B', '-ascii');
 save('A3.dat', 'C', '-ascii');
 
-bcomp = 6 * power(B,4) + sin(B)/2 - 2*B;
+bcomp = 6 * (B^4) + sin(B)/2 - 2*B;
 save('A4.dat', 'bcomp', '-ascii');
 
 fnx = arrayfun(@(x) power(x,3) + 2/power(x,2) - 4 * cos(x), x);
@@ -20,9 +20,9 @@ Base = [17 24 1 8 15; 23 5 7 14 16; 4 6 13 20 22; 10 12 19 21 3; 11 18 25 2 9];
 M65  = (1 / 65.0) * Base;
 M10  = (1 / 10.0) * Base;
 M100 = (1 / 100.0) * Base;
-save('A6.dat', 'M', '-ascii');
+save('A6.dat', 'M65', '-ascii');
 
-a7 = 0;
+a7 = 0.2;
 a8 = 4;
 a9 = 0;
 save('A7.dat', 'a7', '-ascii');

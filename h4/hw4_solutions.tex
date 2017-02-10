@@ -50,7 +50,7 @@
 	  \item $\bm{A} = \bbm 3 & -2 & 0 \\ 0 & 4 & -1 \ebm$
 	  \item $\bm{A} = \bbm 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 1 & 0 & 0 \\ 1 & 0 & 0 & 0 \ebm$
 	  \item $\bm{A} = \bbm 2 & 0 & -4 & 5 \ebm$
-	  \item $\bm{A} = \bbm cos(\theta) & 0 & sin(\theta) \\ 0 & 1 & 0 \\ -sin(\theta) & 1 & cos(\theta) \ebm$
+	  \item $\bm{A} = \bbm cos(\theta) & 0 & sin(\theta) \\ 0 & 1 & 0 \\ -sin(\theta) & 0 & cos(\theta) \ebm$
 	  \end{enumerate}
     \end{enumerate}
 
@@ -67,18 +67,19 @@
 
 	  \solution
 	  \begin{enumerate}
-	  \item rank($\A$) = 3, since the columns are simply $\bm{e}_{1-3}$,
-        which are linearly independent. There is therefore no
-        non-trivial null-space for A.
+	  \item rank($\A$) = 3, since the columns are simply
+        $\bm{e}_{1-3}$, which are linearly independent. There is
+        therefore no non-trivial null-space for A by the rank-nullity
+        theorem.
         
 	  \item Column 1 is simply the zero vector, which is always
         linearly dependent. Cols 2 and 3 are $\bm{e}_1$ and
         $\bm{e}_2$, which are independent, so rank($\A$) = 2.
 
         Since there are no non-zero entries in the first column, we
-        can see that any vector of the form $ \bbm \alpha & 0 & 0 \ebm^t$ will map
+        can see that any vector of the form $ \bbm \alpha & 0 & 0 \ebm^T$ will map
         to $\bm{0}$. Since dim(null($\A$)) = 1 by the rank-nullity
-        theorem, $\bbm 1 & 0 & 0 \ebm^t$ is a basis for the nullspace of $\A$.
+        theorem, $\bbm 1 & 0 & 0 \ebm^T$ is a basis for the nullspace of $\A$.
 
       \item The columns are not scalar multiples of each other, so
         rank($\A$) = 2. By the rank-nullity theorem, the dimension
@@ -89,7 +90,7 @@
          -\bbm 1 \\ 2 \\ 3 \ebm + 2 \bbm 4 \\ 5 \\ 6 \ebm - \bbm 7 \\ 8 \\ 9 \ebm = \bm{0}
         \]
         so the columns are not linearly independent. However, $\bbm 1
-        & 2 & 3 \ebm^t$ and $\bbm 4 & 5 & 6 \ebm^t$ are not scalar
+        & 2 & 3 \ebm^T$ and $\bbm 4 & 5 & 6 \ebm^T$ are not scalar
         multiples, so {\em are} linearly independent. Rank-nullity
         shows that the dimension of the nullspace must be 1, since
         $\A \in \R^{3x3}$.
@@ -98,7 +99,7 @@
         \[
         \bm{x} = \alpha \bbm -1 \\ 2 \\ -1 \ebm
         \]
-        will yield $\bm{Ax} = \bm{0}$, so $\bbm -1 & 2 & -1 \ebm^t \in
+        will yield $\bm{Ax} = \bm{0}$, so $\bbm -1 & 2 & -1 \ebm^T \in
         null(\A)$. Since we know the dimension of the null space
         is 1, this forms a basis for the null space of $\A$.
         
@@ -115,11 +116,10 @@
       $\bm{v}$. Find the rank of $\A$ and a basis for the range of
       $\A$.
 
-	  \solution The columns of $\A$ are simply $u_i * \bm{v}$, so they
-      are linearly dependent, since they are simply scalar multiples
-      of $\bm{v}$. This implies that rank($\A$) = 1, since $\bm{v}
-      \neq \bm{0}$, and that $\bm{v}$ is a basis for the range of
-      $\A$.
+	  \solution The columns of $\A$ are simply $\bm{u} * v_i$, They
+      are linearly dependent since they are simply scalar multiples of
+      $\bm{u}$. This implies that rank($\A$) = 1, since $\bm{u} \neq
+      \bm{0}$, and that $\bm{u}$ is a basis for the range of $\A$.
 
 
 
@@ -137,15 +137,16 @@
     \begin{enumerate}[resume]
 	\item What can you say about the diagonal entries of a skew-symmetric matrix? How about the diagonal entries of a complex hermitian matrix?
 
-	  \solution For a skew-symmetric matrix, $x_{ij} = -x_{ji}$, so
-      any diagonal entry (where $i = j$), must be 0, since only
-      $x_{ii} = 0$ satisfies $x_{ii} = -x_{ii}$.
+	  \solution For a skew-symmetric matrix, where $\A = -\A^t
+      \implies x_{ij} = -x_{ji}$, is satisfied, so any diagonal entry
+      (where $i = j$), must be 0, since only $x_{ii} = 0$ satisfies
+      $x_{ii} = -x_{ii}$.
 
-      A complex hermitian matrix satisfies $x_{ij} = {x_{ji}}^*$,
-      where $\cdot ^ *$ denotes the complex conjugate. so the diagonal
-      entries satisfy $x_{ii} = {x_{ii}}^*$, that is, each diagonal
-      entry is equal to it's conjugate. This describes any complex
-      number with only a real component, $a + i0, \forall a \in \R$.
+      A complex hermitian matrix, where $\A = \A^*$, satisfies $x_{ij}
+      = \overline{x_{ji}}$, so the diagonal entries satisfy $x_{ii} =
+      \overline{x_{ii}}$. That is, each diagonal entry is equal to its
+      complex conjugate. This describes any complex number with only a
+      real component, $a + i0, \forall a \in \R$.
 
     \end{enumerate}
 
