@@ -4,7 +4,7 @@
 \usepackage{enumerate}		% For lists indexed by letters
 \usepackage{bm}				% For bold letters
 \usepackage{enumitem}		% So we can resume counting problem numbers after
-							% interrupting with text
+% interrupting with text
 \usepackage{hyperref}		% For clickable URL links
 \usepackage{url}			% So file names won't create hboxes
 
@@ -19,6 +19,7 @@
 \newcommand{\x}{\bm{x}}					% Bold (vector) x
 \newcommand{\y}{\bm{y}}					% Bold (vector) y
 \newcommand{\A}{\bm{A}}					% Bold (matrix) A
+\newcommand{\I}{\bm{I}}					% Bold (matrix) I
 \newcommand{\vspan}{\mathrm{span}}		% To use the word span in math mode
 
 % Place this command after each problem, before solution (examples below)
@@ -31,112 +32,144 @@
 \begin{document}
 
 \maketitle
-{\Large \textbf{Due: Friday February 17, 2017}} \\
+    {\Large \textbf{Due: Friday February 17, 2017}} \\
 
 
-\section*{Matrices:}
-\begin{enumerate}
+    \section*{Matrices:}
+    \begin{enumerate}
 	\item Consider a real matrix $\A\in\R^{m\times n}$ with $m\geq n$ which is full rank, i.e. rank($\A$)$=n$.
-	\begin{enumerate}
-		\item Find the nullspace of $\A$.
-		\item Show that for any vector $\x\in\R^n,~\x^T\A^T\A\x=\|\A\x\|^2_2$.
-		\item Show that the matrix $\A^T\A$ is invertible. Hint: show the nullspace of $\A^T\A$ is $\{\bm{0}\}$ by assuming $\bm{z}\in\mathrm{null}(\A^T\A)$ then using the previous parts of this question to show that $\bm{z}=\bm{0}$. (Second hint: try multiplying by $\bm{z}^T$. You will also need one of the defining properties of a norm).
-	\end{enumerate}
+	  \begin{enumerate}
+	  \item Find the nullspace of $\A$.
+	  \item Show that for any vector $\x\in\R^n,~\x^T\A^T\A\x=\|\A\x\|^2_2$.
+      \item Show that the matrix $\A^T\A$ is invertible. Hint: show the nullspace of $\A^T\A$ is $\{\bm{0}\}$ by assuming $\bm{z}\in\mathrm{null}(\A^T\A)$ then using the previous parts of this question to show that $\bm{z}=\bm{0}$. (Second hint: try multiplying by $\bm{z}^T$. You will also need one of the defining properties of a norm).
+	  \end{enumerate}
 
-	\solution
-	\begin{enumerate}
-		\item Your solution goes here.
-		\item Your solution goes here.
-		\item Your solution goes here.
-	\end{enumerate}
-	
+	  \solution
+	  \begin{enumerate}
+	  \item By rank-nullity, $rank(A) + dim(null(\A)) = n$, so the
+        dimension of the nullspace is 0 which implies $null(\A) =
+        \{\bm{0}\}$.
+	  \item TODO Your solution goes here.
+	  \item TODO Your solution goes here.
+	  \end{enumerate}
+	  
 	\item Suppose $\A\in\R^{n\times n}$ is invertible. Find the inverse of $\A^T\A$ and show that it is symmetric.
 
-	\solution
-	Your solution goes here.
+	  \solution
+	  Using the associative property of matrix multiplication, we can see that the inverse of $\A^T\A$ is $\A^{-1}(\A^T)^{-1}$ since
+      \[
+      \A^T \A \A^{-1}(\A^T)^{-1} = \A^T \I (\A^T)^{-1} = \I
+      \]
+      But the properties of the matrix inverse allows us to express
+      $(\A^T)^{-1}$ as $(\A^{-1})^T$, so the inverse is equivalently
+      $\A^{-1}(\A^{-1})^T$, in otherwords, it's the product of a matrix
+      with its transpose. Any such matrix product must be symmetric,
+      since for $\bm{C} = \bm{B}\bm{B}^T$,
+      \[
+      \bm{C}_{ij} = \sum_{k=1}^{m} \bm{B}_{ik} \bm{B}^T_{kj}
+      \]
+      but $\bm{B}^T_{kj} = \bm{B}_{jk}$ so
+      \[
+      \bm{C}_{ij} = \sum_{k=1}^{m} \bm{B}_{ik} \bm{B}_{jk} = \sum_{1}^{m} \bm{B}_{jk} \bm{B}_{ik} = \bm{C}_{ji}
+      \]
 
 
 	\item Suppose $\A,\bm{B}\in\R^{n\times n}$. Show that $\bm{AB}$ is invertible if and only if both $\A$ and $\bm{B}$ are invertible. This means you must show that if $\bm{AB}$ is invertible, so are $\A$ and $\bm{B}$ and you must also show that if $\A$ and $\bm{B}$ are invertible, so is $\bm{AB}$. Hint: use the determinant.
 
-	\solution
-	Your solution goes here.
+	  \solution
 
+      The statement that $\A\bm{B}$ is invertible is equivalent to
+      stating that it's determinant is non-zero. By the properties of
+      the determinant, we know that $$det(\A \bm{B}) = det(\A)
+      \det(\bm{B})$$ so if $det(\A\bm{B}) \neq 0$, then both $\A$ and
+      $\bm{B}$ must have non-zero determinants, and are invertible. If
+      either of $\A$ or $\bm{B}$ are non-invertible, then it follows
+      that $det(\A\bm{B}) = 0$, and $\A\bm{B}$ is non-invertible.
 
 	\item Suppose $\A,\bm{B},\bm{C}\in\R^{n\times n}$ are all invertible. Show that $\bm{ABC}$ is invertible by finding a matrix $\bm{D}$ such that $(\bm{ABC})\bm{D}=\bm{D}(\bm{ABC})=\bm{I}$.
 
-	\solution
-	Your solution goes here.
+	  \solution
 
-
+      $\bm{D} = \bm{C}^{-1} \bm{B}^{-1} \A^{-1}$ satisfies the
+      requirement, since the associative property of matrix
+      multiplication shows that
+      $$ \bm{ABC}\bm{C}^{-1} \bm{B}^{-1} \A^{-1} = \bm{ABI} \bm{B}^{-1} \A^{-1} = \bm{AI} \A^{-1} = \I $$
+      and
+      $$ \bm{C}^{-1} \bm{B}^{-1} \A^{-1} \bm{ABC} = \bm{C}^{-1} \bm{B}^{-1} \bm{IBC} = \bm{C}^{-1} \bm{IC} = \I $$
+      
 	\item Based on your answer to the previous problem, what do you think the inverse of $\A_1\A_2\cdots \A_k$ would be, assuming $\A_1,\A_2,\dots,\A_k\in\R^{n\times n}$ are all invertible? You do not have to provide a proof, but you should briefly explain your reasoning.
 
-	\solution
-	Your solution goes here.
+	  \solution
+
+      If we define $\A = \prod_{k=1}^{n} \A_k$, then $\A^{-1} =
+      \prod_{k=n}^{1} \A_k^{-1}$, that is, we multiply the inverses in
+      reverse order. This allows associative cancellation under either
+      left- or right-multiplication by $\A^{-1}$.
 
 
 	\item Let $\A\in\R^{n\times n}$ be invertible and let $\bm{B}\in\R^{n\times r}$ for some positive integer $r$. Show that $\bm{AX}=\bm{B}$ has a unique solution. Note that $\bm{X}\in\R^{n\times r}$ is a matrix.
 
-	\solution
-	Your solution goes here.
+	  \solution
+	  TODO Your solution goes here.
 
 
 	\item We saw in class that multiplication by an orthogonal matrix preserves lengths (with respect to the 2-norm). In this problem you will show that they also preserve the dot product and orthogonality, that is, the dot product between two vectors is the same as the dot product of any orthogonal matrix applied to the two vectors.
 
-	\solution
-	Your solution goes here.
+	  \solution
+	  TODO Your solution goes here.
 
-	Let $\bm{U}\in\R^{n\times n}$ be an orthogonal matrix. Show that for any $\x,\y\in\R^n$
-	\begin{enumerate}
-		\item $(\bm{Ux})\cdot(\bm{Uy})=\x\cdot\y$,
-		\item $(\bm{Ux})\cdot(\bm{Uy}) = 0$ if and only if $\x\cdot \y=0$.
+	  Let $\bm{U}\in\R^{n\times n}$ be an orthogonal matrix. Show that for any $\x,\y\in\R^n$
+	  \begin{enumerate}
+	  \item $(\bm{Ux})\cdot(\bm{Uy})=\x\cdot\y$,
+	  \item $(\bm{Ux})\cdot(\bm{Uy}) = 0$ if and only if $\x\cdot \y=0$.
 
 		(This means you must show that $(\bm{Ux})\cdot(\bm{Uy}) = 0$ implies $\x\cdot \y=0$ and that $\x\cdot \y=0$ implies $(\bm{Ux})\cdot(\bm{Uy}) = 0$).
-	\end{enumerate}
+	  \end{enumerate}
 
-	\solution
-	\begin{enumerate}
-		\item Your solution goes here.
-		\item Your solution goes here. 
-	\end{enumerate}
-\end{enumerate}
+	  \solution
+	  \begin{enumerate}
+	  \item TODO Your solution goes here.
+	  \item TODO Your solution goes here. 
+	  \end{enumerate}
+    \end{enumerate}
 
-\section*{Systems of equations}
-\begin{enumerate}[resume]
+    \section*{Systems of equations}
+    \begin{enumerate}[resume]
 	\item \begin{figure}
-		\centering
-		\begin{tabular}{ccccc}
+	  \centering
+	  \begin{tabular}{ccccc}
 		Nutrient & Food 1 & Food 2 & Food 3 & Total nutrients required (mg) \\ \hline
 		Vitamin C & 10 & 20 & 20 & 100 \\
 		Calcium & 50 & 40 & 10 & 300 \\
 		Magnesium & 30 & 10 & 40 & 200 \\ \hline
-		\end{tabular}
-		\caption{Milligrams (mg) of nutrients per unit of food}
-		\label{fig:diet}
+	  \end{tabular}
+	  \caption{Milligrams (mg) of nutrients per unit of food}
+	  \label{fig:diet}
 	\end{figure}
 
-	A dietician is planning a meal that supplies certain quantities of vitamin C, calcium, and magnesium. Three foods will be included in the diet, their quantities measured in appropriate units. The nutrients supplied by these foods and the dietary requirements are given in Figure \ref{fig:diet}. Write a linear system of equations which represents the problem of choosing the appropriate amounts of each food that should be consumed to get the desired nutrients. Write the linear system of equations as a matrix-vector equation.
+	  A dietician is planning a meal that supplies certain quantities of vitamin C, calcium, and magnesium. Three foods will be included in the diet, their quantities measured in appropriate units. The nutrients supplied by these foods and the dietary requirements are given in Figure \ref{fig:diet}. Write a linear system of equations which represents the problem of choosing the appropriate amounts of each food that should be consumed to get the desired nutrients. Write the linear system of equations as a matrix-vector equation.
 
-	\solution
-	Your solution goes here.
+	  \solution
+	  TODO Your solution goes here.
 
 
 	\item For each of the following matrices, $\A$, and vectors, $\bm{b}$, determine the number of solutions to $\A\x=\bm{b}$.
-	\begin{enumerate}
-		\item $\A = \bbm 1&1\\1&1 \ebm,\quad \bm{b}=\bbm 1\\2\ebm$
-		\item $\A = \bbm 1&1\\1&-1\ebm,\quad \bm{b}=\bbm 1\\2\ebm$
-		\item $\A = \bbm 1 & 2 & 1 \\ 1&1&0\\1&2&0 \ebm,\quad \bm{b}=\bbm 4\\2\\3 \ebm$
-		\item $\A = \bbm 1&0&1\\0&1&1\\1&0&1 \ebm,\quad \bm{b}=\bbm 2\\2\\1 \ebm$
-		\item $\A = \bbm 1&0&1\\0&1&1\\1&0&1 \ebm,\quad \bm{b}=\bbm 5\\-3\\5 \ebm$
-	\end{enumerate}
+	  \begin{enumerate}
+	  \item $\A = \bbm 1&1\\1&1 \ebm,\quad \bm{b}=\bbm 1\\2\ebm$
+	  \item $\A = \bbm 1&1\\1&-1\ebm,\quad \bm{b}=\bbm 1\\2\ebm$
+	  \item $\A = \bbm 1 & 2 & 1 \\ 1&1&0\\1&2&0 \ebm,\quad \bm{b}=\bbm 4\\2\\3 \ebm$
+	  \item $\A = \bbm 1&0&1\\0&1&1\\1&0&1 \ebm,\quad \bm{b}=\bbm 2\\2\\1 \ebm$
+	  \item $\A = \bbm 1&0&1\\0&1&1\\1&0&1 \ebm,\quad \bm{b}=\bbm 5\\-3\\5 \ebm$
+	  \end{enumerate}
 
-	\solution
-	\begin{enumerate}
-		\item Your solution goes here.
-		\item Your solution goes here.
-		\item Your solution goes here.
-		\item Your solution goes here.
-		\item Your solution goes here.
-	\end{enumerate}
-\end{enumerate}
+	  \solution
+	  \begin{enumerate}
+	  \item TODO Your solution goes here.
+	  \item TODO Your solution goes here.
+	  \item TODO Your solution goes here.
+	  \item TODO Your solution goes here.
+	  \item TODO Your solution goes here.
+	  \end{enumerate}
+    \end{enumerate}
 
 \end{document}
