@@ -46,11 +46,29 @@
 
 	  \solution
 	  \begin{enumerate}
-	  \item By rank-nullity, $rank(A) + dim(null(\A)) = n$, so the
-        dimension of the nullspace is 0 which implies $null(\A) =
-        \{\bm{0}\}$.
-	  \item TODO Your solution goes here.
-	  \item TODO Your solution goes here.
+
+      \item By rank-nullity, $rank(A) + dim(null(\A)) = n$, since $m
+        \geq n$, so the dimension of the nullspace is 0 which implies
+        $null(\A) = \{\bm{0}\}$.
+
+	  \item From the properties the tranpose operator, we can express
+        $\x^T\A^T\A\x$ as $(\A\x)^T\A x$. In other words, it is the
+        inner product of $\A\x$ with itself. But we already know that
+        the inner product of vector with itself is equivalent to the
+        square of the 2-norm, so
+        $$\x^T\A^T\A\x = (\A\x)^T\A x = \|\A\x\|^2_2$$
+
+      \item From the previous answer, we know that if we create the
+        product $x^T(\A^T\A)x$ with some arbitrary $x \in \R^n$, that
+        it is equivalent to $\|\A x\|_2^2$. Assume $x \in
+        null(\A^T\A)$. Then
+        $$x^T(\A^T\A)x = x^T\bm{0} = 0$$ But this implies that $\|\A
+        x\|_2^2 = 0$, which implies that $\A x = \bm{0}$ by the
+        properties of the 2-norm. Since we know that $\A$ is
+        full-rank, $\A x = \bm{0} \implies x = \bm{0}$. Therefore
+        $null(\A^T\A) = \{ \bm{0} \}$, which shows that $\A^T\A$ is
+        invertible.
+        
 	  \end{enumerate}
 	  
 	\item Suppose $\A\in\R^{n\times n}$ is invertible. Find the inverse of $\A^T\A$ and show that it is symmetric.
@@ -62,7 +80,7 @@
       \]
       But the properties of the matrix inverse allows us to express
       $(\A^T)^{-1}$ as $(\A^{-1})^T$, so the inverse is equivalently
-      $\A^{-1}(\A^{-1})^T$, in otherwords, it's the product of a matrix
+      $\A^{-1}(\A^{-1})^T$, in other words, it's the product of a matrix
       with its transpose. Any such matrix product must be symmetric,
       since for $\bm{C} = \bm{B}\bm{B}^T$,
       \[
@@ -79,7 +97,7 @@
 	  \solution
 
       The statement that $\A\bm{B}$ is invertible is equivalent to
-      stating that it's determinant is non-zero. By the properties of
+      stating that its determinant is non-zero. By the properties of
       the determinant, we know that $$det(\A \bm{B}) = det(\A)
       \det(\bm{B})$$ so if $det(\A\bm{B}) \neq 0$, then both $\A$ and
       $\bm{B}$ must have non-zero determinants, and are invertible. If
@@ -109,14 +127,36 @@
 
 	\item Let $\A\in\R^{n\times n}$ be invertible and let $\bm{B}\in\R^{n\times r}$ for some positive integer $r$. Show that $\bm{AX}=\bm{B}$ has a unique solution. Note that $\bm{X}\in\R^{n\times r}$ is a matrix.
 
-	  \solution
-	  TODO Your solution goes here.
+	  \solution Assume that there were two solutions, $\A\bm{X}_1 =
+      \bm{B}$ and $\A\bm{X}_2 = \bm{B}$. Then we can see by equating
+      them, and subtracting, that the columns of $\bm{X}_1 - \bm{X}_2$
+      must be in the null space of $\A$.
+      \[
+      \begin{split}
+        \A\bm{X}_1 & = \A\bm{X}_2 \\
+        \A\bm{X}_1 - \A\bm{X}_2 &= \bm{0}\\
+        \A(\bm{X}_1 - \bm{X}_2) &= \bm{0}
+      \end{split}
+      \]
+      
+      Since $\A$ is invertible, it
+      has no non-trival null space, and only a unique solution is
+      possible. Therefore
+      \[
+      \begin{split}
+        \A^{-1}\A\bm{X} &= \A^{-1}\bm{B} \\
+        \bm{X} &= \A^{-1}\bm{B}
+      \end{split}
+      \]
+      uniquely solves the system of equations.
 
 
-	\item We saw in class that multiplication by an orthogonal matrix preserves lengths (with respect to the 2-norm). In this problem you will show that they also preserve the dot product and orthogonality, that is, the dot product between two vectors is the same as the dot product of any orthogonal matrix applied to the two vectors.
-
-	  \solution
-	  TODO Your solution goes here.
+	\item We saw in class that multiplication by an orthogonal matrix
+      preserves lengths (with respect to the 2-norm). In this problem
+      you will show that they also preserve the dot product and
+      orthogonality, that is, the dot product between two vectors is
+      the same as the dot product of any orthogonal matrix applied to
+      the two vectors.
 
 	  Let $\bm{U}\in\R^{n\times n}$ be an orthogonal matrix. Show that for any $\x,\y\in\R^n$
 	  \begin{enumerate}
@@ -128,8 +168,29 @@
 
 	  \solution
 	  \begin{enumerate}
-	  \item TODO Your solution goes here.
-	  \item TODO Your solution goes here. 
+	  \item Recall that the dot product is distributive, so that
+        $$\bm{x} \cdot (\bm{y} + \bm{z}) = \bm{x} \cdot \bm{y} +
+        \bm{x} \cdot \bm{z}$$ If we denote the columns of $\bm{U}$ as
+        $\bm{U}_i$, then we can rewrite the matrix-vector product
+        $\bm{U}\bm{x}$ as $\sum_{i} \bm{U}_i x_i$. This allows us to
+        rewrite 
+        \[\begin{split}
+        (\bm{Ux})\cdot(\bm{Uy}) &= \left(\sum_{i} \bm{U}_i x_i\right) \cdot \left(\sum_{j} \bm{U}_j y_j\right) \\
+        &= \sum_{i} \sum_{j} (\bm{U}_i x_i) \cdot (\bm{U}_j y_j) \\
+        &= \sum_{i} \sum_{j} x_i y_j (\bm{U}_i \cdot \bm{U}_j)
+        \end{split}\]
+        However, because $\bm{U}$ is orthogonal, we know that
+        $\bm{U}_i \cdot \bm{U}_j$ is only non-zero when $i = j$, and
+        further, that when $i = j$, $\bm{U}_i \cdot \bm{U}_j = 1$. So
+        all of the summation terms except $i = j$ drop out, leaving us
+        with
+        \[\begin{split}
+        (\bm{Ux})\cdot(\bm{Uy}) &= \sum_{i} \sum_{j} x_i y_j (\bm{U}_i \cdot \bm{U}_j) \\
+        &= \sum_{i}  x_i y_i \\
+        &= \bm{x} \cdot \bm{y}
+        \end{split}\]
+
+      \item TODO Your solution goes here.
 	  \end{enumerate}
     \end{enumerate}
 
@@ -149,8 +210,20 @@
 
 	  A dietician is planning a meal that supplies certain quantities of vitamin C, calcium, and magnesium. Three foods will be included in the diet, their quantities measured in appropriate units. The nutrients supplied by these foods and the dietary requirements are given in Figure \ref{fig:diet}. Write a linear system of equations which represents the problem of choosing the appropriate amounts of each food that should be consumed to get the desired nutrients. Write the linear system of equations as a matrix-vector equation.
 
-	  \solution
-	  TODO Your solution goes here.
+	  \solution We will denote the vector of supplied foods as $\bm{x}
+      \in \R^3$, where $x_i$ represents the amount of Food $i$. As a
+      system of equations, we are looking for solutions to
+      \[\begin{split}
+      10 x_1 + 20 x_2 + 20 x_3 &= 100 \\
+      50 x_1 + 40 x_2 + 10 x_3 &= 300 \\
+      30 x_1 + 10 x_2 + 10 x_3 &= 200
+      \end{split}\]
+      or as a matrix-vector equation, we are looking for solutions to $\A \bm{x} = \bm{b}$ for
+      \begin{gather*}
+        \A = \bbm 10 & 20 & 20 \\ 50 & 40 & 10 \\ 30 & 10 & 10 \ebm \\
+        \bm{b} = \bbm 100 \\ 300 \\ 200 \ebm
+      \end{gather*}
+      
 
 
 	\item For each of the following matrices, $\A$, and vectors, $\bm{b}$, determine the number of solutions to $\A\x=\bm{b}$.
@@ -164,11 +237,40 @@
 
 	  \solution
 	  \begin{enumerate}
-	  \item TODO Your solution goes here.
-	  \item TODO Your solution goes here.
-	  \item TODO Your solution goes here.
-	  \item TODO Your solution goes here.
-	  \item TODO Your solution goes here.
+	  \item By inspection, $range(\A) = span\left(\bbm 1 \\ 1 \ebm\right)$ since
+        it's columns are identical. Since $\bbm 1 \\ 2 \ebm$ is not a
+        scalar multiple of $\bbm 1 \\ 1 \ebm$, $\bm{b} \not\in
+        range(\A)$, and there are no solutions.
+
+      \item $\A \in \R^{2x2}$ and is full rank, since its columns are
+        non-zero and not scalar multiples. So $range(\A) = \R^{2}$,
+        and $dim(null(\A)) = 0$, which means there is a single valid
+        solution for this equation.
+
+      \item Recalling that for $\A \in \R^{nxn}$, $det(\A) \neq 0$
+        implies that $\A$ has full rank, here we see that $det(\A) =
+        1$, which means this equation has a single valid solution.
+
+	  \item By inspection, $\A$ does not have full rank, since
+        $$ \bbm 1\\0\\1 \ebm + \bbm 0\\1\\0 \ebm - \bbm 1\\1\\1 \ebm =
+        \bm{0} $$ Since the first two columns {\em are} linearly
+        independent (no scalar multiple of the first column will have
+        a non-zero second component), we need to determine if there
+        are solutions to
+        $$ \alpha \bbm 1\\0\\1 \ebm + \beta \bbm 0\\1\\0 \ebm = \bbm
+        2\\2\\1 \ebm $$ However, by examining the first and third
+        component of the sum, we see that $\alpha = 2$ and $\alpha =
+        1$ are required to satisfy the equation. This shows $\bm{b}
+        \not\in range(\A)$, and there are zero solutions.
+        
+	  \item Noting that $\A$ has the same properties as in the
+        previous problem, we are looking for solutions to
+        $$ \alpha \bbm 1\\0\\1 \ebm + \beta \bbm 0\\1\\0 \ebm = \bbm
+        5\\-3\\5 \ebm $$ which we can simply observe is satisfied by
+        $\alpha = 5,~\beta = -3$. Since $dim(null(\A)) = 1$ by the
+        rank-nullity theorem, and $\bm{b} \in range(\A)$, there are
+        infinitely many solutions to $\A\bm{x} = \bm{b}$ as given in
+        this problem.
 	  \end{enumerate}
     \end{enumerate}
 
