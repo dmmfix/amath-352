@@ -4,7 +4,7 @@
 \usepackage{enumerate}		% For lists indexed by letters
 \usepackage{bm}				% For bold letters
 \usepackage{enumitem}		% So we can resume counting problem numbers after
-							% interrupting with text
+% interrupting with text
 \usepackage{hyperref}		% For clickable URL links
 \usepackage{url}			% So file names won't create hboxes
 \usepackage[margin=1in]{geometry}	% Make margins wider
@@ -22,6 +22,10 @@
 \newcommand{\y}{\bm{y}}					% Bold (vector) y
 \newcommand{\A}{\bm{A}}					% Bold (matrix) A
 \newcommand{\vspan}{\mathrm{span}}		% To use the word span in math mode
+\newcommand{\vrange}{\mathrm{range}}		% To use the word span in math mode
+\newcommand{\vdim}{\mathrm{dim}}		% To use the word span in math mode
+\newcommand{\vnull}{\mathrm{null}}		% To use the word span in math mode
+\newcommand{\vrank}{\mathrm{rank}}		% To use the word span in math mode
 \newcommand{\la}{\langle}				% Left angled bracket <
 \newcommand{\ra}{\rangle}				% Right angled bracket >
 
@@ -30,84 +34,128 @@
 
 
 \title{AMATH 352: Problem Set 6}
-\author{Your name}
+\author{Dave Moore, dmmfix@uw.edu}
 
 \begin{document}
 
 \maketitle
-{\Large \textbf{Due: Friday February 24, 2017}} \\
+    {\Large \textbf{Due: Friday February 24, 2017}} \\
 
-\section*{Norms and Inner products:}
-\begin{enumerate}[resume]
+    \section*{Norms and Inner products:}
+    \begin{enumerate}[resume]
 	\item Let $\bm{W}$ be an invertible matrix. Show that the map
-	\[
-		\|\x\|_{\bm{W}}=\|\bm{Wx}\|_2
-	\]
-	is a norm on $\R^m$. Is it still a norm if $\bm{W}$ is singular? Why or why not?
+	  \[
+	  \|\x\|_{\bm{W}}=\|\bm{Wx}\|_2
+	  \]
+	  is a norm on $\R^m$. Is it still a norm if $\bm{W}$ is singular? Why or why not?
 
-	\solution Your solution.
+	  \solution Since $\bm{W}$ is invertible, its range is all of
+      $\R^m$, which means that we can simply observe that
+      $\|\cdot\|_2$ is a norm on $\R^m$, and therefore
+      $\|\cdot\|_{\bm{W}}$ satisfies the 5 properties of a
+      norm. However, if $\bm{W}$ were singular, the property that
+      $\|\x\|_{\bm{W}} = 0 \implies \x = \bm{0}$ would be violated,
+      since we could choose some $\y \neq 0 \in \vnull(\A)$ to obtain
+      $\|\y\|_{\bm{W}} = \|\bm{Wy}\|_2 = \|\bm{0}\|_2 = 0$.
 
 
 	\item Consider a real square matrix $\bm{M}\in\R^{n\times n}$. Suppose $\bm{M}$ is symmetric and full rank. Furthermore, suppose $\bm{M}$ is positive definite, i.e. it satisfies
-	\[
-		\forall\x\in\R^n,~\x\neq\bm{0}\implies \x^T\bm{Mx}>0.
-	\]
-	Show that the map $\la\cdot,\cdot\ra_{\bm{M}}:\R^n\to\R$ given by
-	\[
-		\la \x,\y\ra_{\bm{M}} =\x^T\bm{My}
-	\]
-	is an inner product on $\R^n$.
+	  \[
+	  \forall\x\in\R^n,~\x\neq\bm{0}\implies \x^T\bm{Mx}>0.
+	  \]
+	  Show that the map $\la\cdot,\cdot\ra_{\bm{M}}:\R^n\to\R$ given by
+	  \[
+	  \la \x,\y\ra_{\bm{M}} =\x^T\bm{My}
+	  \]
+	  is an inner product on $\R^n$.
 
-	\solution Your solution.
+	  \solution Your solution.
 
 	\item Show that the function $\la\cdot,\cdot\ra:C^0([-1,1],\R)\to\R$ given by 
-	\[
-		\la f,g\ra = \int^1_{-1}f(x)g(x)dx
-	\]
-	is an inner product on $C^0([-1,1],\R)$. Note that $C^0([-1,1],\R)$ denotes the space of continuous functions that take input from [-1,1] and produce output in $\R$.
+	  \[
+	  \la f,g\ra = \int^1_{-1}f(x)g(x)dx
+	  \]
+	  is an inner product on $C^0([-1,1],\R)$. Note that $C^0([-1,1],\R)$ denotes the space of continuous functions that take input from [-1,1] and produce output in $\R$.
 
-	\solution Your solution.
+	  \solution Your solution.
 
-\end{enumerate}
+    \end{enumerate}
 
-\section*{Conditioning:}
-\begin{enumerate}[resume]
+    \section*{Conditioning:}
+    \begin{enumerate}[resume]
 	\item In this problem we show that orthogonal matrices are ``perfectly conditioned'' in the sense that their condition numbers with respect to the 2-norm are always 1. Suppose $\bm{O}\in\R^{n\times n}$ is an orthogonal matrix.
-	\begin{enumerate}
-		\item Show that $\|\bm{O}\|_2=1$. (Hint: recall that orthogonal matrices preserve the 2-norms of vectors).
-		\item Show that $\bm{O}^T$ is an orthogonal matrix.
-		\item Show that $\kappa_2(\bm{O})=1$.
-	\end{enumerate}
+	  \begin{enumerate}
+	  \item Show that $\|\bm{O}\|_2=1$. (Hint: recall that orthogonal matrices preserve the 2-norms of vectors).
+	  \item Show that $\bm{O}^T$ is an orthogonal matrix.
+	  \item Show that $\kappa_2(\bm{O})=1$.
+	  \end{enumerate}
 
-	\solution
-	\begin{enumerate}
-		\item Your solution.
-		\item Your solution.
-		\item Your solution.
-	\end{enumerate}
-\end{enumerate}
+	  \solution
+	  \begin{enumerate}
+	  \item Your solution.
+	  \item Your solution.
+	  \item Your solution.
+	  \end{enumerate}
+    \end{enumerate}
 
-\section*{Operation count:}
-\begin{enumerate}[resume]
+    \section*{Operation count:}
+    \begin{enumerate}[resume]
 	\item Find the number of necessary floating point operations required to compute the following operations (using the big-oh notation introduced in class). Explain your reasoning in each case.
-	\begin{enumerate}
-		\item Compute the sum $\A+\bm{B}$ for $\A,\bm{B}\in\R^{m\times n}$.
-		\item Compute the outer product $\bm{uv}^T$ for $\bm{u},\bm{v}\in\R^n$.
-		\item Compute the product $\A\x$ for $\x\in\R^n$ and $\A\in\R^{n\times n}$ where $\A$ is upper triangular.
-	\end{enumerate}
+	  \begin{enumerate}
+	  \item Compute the sum $\A+\bm{B}$ for $\A,\bm{B}\in\R^{m\times n}$.
+	  \item Compute the outer product $\bm{uv}^T$ for $\bm{u},\bm{v}\in\R^n$.
+	  \item Compute the product $\A\x$ for $\x\in\R^n$ and $\A\in\R^{n\times n}$ where $\A$ is upper triangular.
+	  \end{enumerate}
 
-	\solution
-	\begin{enumerate}
-		\item Your solution.
-		\item Your solution.
-		\item Your solution.
-	\end{enumerate}
+	  \solution
+	  \begin{enumerate}
+	  \item
+        Each element of the sum requires a single addition, and there
+        are $m \times n$ elements in $\A + \bm{B} \in \R^{m \times n}$, so
+        this is O($m \times n$).
+
+      \item There are  required to
+        compute $\bm{uv}^T$, so this is O($n$).
+
+      \item This is equivalent to $n$ dot-products of $n$-dimensional
+        vectors. Each dot-product requires $n$ multiplies and $n-1$
+        additions, or $2n - 1$ total flops. So the time complexity for
+        $n$ dot-products is O($n^2$).
+
+        Note that because $\A$ is upper-triangular, only half of the
+        multiplies will be with non-zero components, but the resulting
+        reduction in flops of $\half$ is irrelevant for big-oh.
+	  \end{enumerate}
 
 
-	\item \textbf{Comparing growth rates:} This exercise is meant to give you an idea of how quickly the number of flops required to solve a problem can increase when one increases the problem size, depending on the complexity of the algorithm used. Construct a table comparing $n,n\log_2(n),n^2,n^3,2^n,$ and $n!$ for $n=2,4,8,16,64,512$. (You may need to use something like Wolfram Alpha to compute some of these quantities).
+	\item \textbf{Comparing growth rates:} This exercise is meant to
+      give you an idea of how quickly the number of flops required to
+      solve a problem can increase when one increases the problem
+      size, depending on the complexity of the algorithm
+      used. Construct a table comparing $n,n\log_2(n),n^2,n^3,2^n,$
+      and $n!$ for $n=2,4,8,16,64,512$. (You may need to use something
+      like Wolfram Alpha to compute some of these quantities).
 
-	\solution Your solution.
-
-\end{enumerate}
+	  \solution
+      \begin{tabular}{|r||r|r|r|r|r|r|}
+        \hline
+        & 2 & 4 & 8 & 16 & 64 & 512 \\
+        \hline
+        \hline
+        $n$ & 2 & 4 & 8 & 16 & 64 & 512 \\
+        \hline
+        $n log_2(n)$ & 2 & 8 & 24 & 64 & 384 & 4608 \\
+        \hline
+        $n^2$ & 4 & 16 & 64 & 256 & 4096 & $2.621 \times 10^{5}$ \\
+        \hline
+        $n^3$ & 8 & 64 & 512 & 4096 & $2.621 \times 10^{5}$ & $1.342 \times 10^{8}$ \\
+        \hline
+        $2^n$ & 4 & 16 & 256 & 65536 & $1.844 \times 10^{19}$ & $1.340 \times 10^{154}$ \\
+        \hline
+        $n!$ & 2 & 24 & 40320 & $2.092 \times 10^{13}$ & $1.268 \times 10^{89}$ & $3.477 \times 10^{1166}$ \\
+        \hline
+      \end{tabular}
+      
+    \end{enumerate}
 
 \end{document}
