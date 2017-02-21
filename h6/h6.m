@@ -26,9 +26,9 @@ b1 = A * x1;
 b2 = A * x2;
 b3 = A * x3;
 
-x1err = rel_err(b1, b);
-x2err = rel_err(b2, b);
-x3err = rel_err(b3, b);
+x1err = rel_err(b, b1);
+x2err = rel_err(b, b2);
+x3err = rel_err(b, b3);
 save('A5.dat', 'x1err', '-ascii');
 save('A6.dat', 'x2err', '-ascii');
 save('A7.dat', 'x3err', '-ascii');
