@@ -114,8 +114,9 @@
         are $m \times n$ elements in $\A + \bm{B} \in \R^{m \times n}$, so
         this is O($m \times n$).
 
-      \item There are  required to
-        compute $\bm{uv}^T$, so this is O($n$).
+      \item $\bm{uv}^T \in \R^{n \times n}$, and each element of the
+        product requires a single multiplication, so the total
+        operation count is O($n^2$).
 
       \item This is equivalent to $n$ dot-products of $n$-dimensional
         vectors. Each dot-product requires $n$ multiplies and $n-1$
