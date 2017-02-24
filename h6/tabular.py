@@ -5,7 +5,7 @@ import math
 vals = [2, 4, 8, 16, 64, 512]
 fns  = [
     [lambda x: x, 'n'],
-    [lambda x: x * math.log2(x), 'n log_2(n)'],
+    [lambda x: x * math.log2(x), 'n\log_2(n)'],
     [lambda x: x ** 2, 'n^2'],
     [lambda x: x ** 3, 'n^3'],
     [lambda x: 2 ** x, '2^n'],

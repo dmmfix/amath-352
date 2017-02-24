@@ -1,4 +1,5 @@
 \documentclass[]{article}
+\usepackage{listings}
 \usepackage{amsmath}		% For generic math symbols
 \usepackage{amssymb}		% For mathbb
 \usepackage{enumerate}		% For lists indexed by letters
@@ -20,12 +21,14 @@
 \newcommand{\ebm}{\end{bmatrix}}		% End bmatrix environment
 \newcommand{\x}{\bm{x}}					% Bold (vector) x
 \newcommand{\y}{\bm{y}}					% Bold (vector) y
+\newcommand{\z}{\bm{z}}					% Bold (vector) z
 \newcommand{\A}{\bm{A}}					% Bold (matrix) A
 \newcommand{\vspan}{\mathrm{span}}		% To use the word span in math mode
 \newcommand{\vrange}{\mathrm{range}}		% To use the word span in math mode
 \newcommand{\vdim}{\mathrm{dim}}		% To use the word span in math mode
 \newcommand{\vnull}{\mathrm{null}}		% To use the word span in math mode
 \newcommand{\vrank}{\mathrm{rank}}		% To use the word span in math mode
+\newcommand{\vmax}{\mathrm{max}}		% To use the word span in math mode
 \newcommand{\la}{\langle}				% Left angled bracket <
 \newcommand{\ra}{\rangle}				% Right angled bracket >
 
@@ -49,17 +52,43 @@
 	  \]
 	  is a norm on $\R^m$. Is it still a norm if $\bm{W}$ is singular? Why or why not?
 
-	  \solution Since $\bm{W}$ is invertible, its range is all of
-      $\R^m$, which means that we can simply observe that
-      $\|\cdot\|_2$ is a norm on $\R^m$, and therefore
-      $\|\cdot\|_{\bm{W}}$ satisfies the 5 properties of a
-      norm. However, if $\bm{W}$ were singular, the property that
-      $\|\x\|_{\bm{W}} = 0 \implies \x = \bm{0}$ would be violated,
-      since we could choose some $\y \neq 0 \in \vnull(\A)$ to obtain
-      $\|\y\|_{\bm{W}} = \|\bm{Wy}\|_2 = \|\bm{0}\|_2 = 0$.
+	  \solution If $\bm{W}$ is invertible, $\|\cdot\|_{\bm{W}}$
+      satisfies the 4 properties of a norm:
+      \begin{enumerate}
+      \item $\|\x\|_{\bm{W}} = \|\bm{Wx}\|_2 \geq 0~\forall~ \x \neq
+        \bm{0}$ because $\|\cdot\|_2$ is a norm on $\R^m$, and
+        $\vnull(\bm{W}) = \{\bm{0}\}$.
+        
+      \item Since $\bm{W}$ is invertible, $\bm{Wx} = \bm{0}
+        \implies \x = \bm{0}$, so $\|\x\|_{\bm{W}}=\|\bm{Wx}\|_2 =
+        \bm{0} \implies \bm{x} = \bm{0}$.
+        
+      \item
+        \[\begin{split}
+          \|\alpha \x\|_{\bm{W}} & = \|\bm{W} (\alpha \x)\|_2 \\
+          & = \|\alpha \bm{Wx}\|_2 \\
+          & = |\alpha| \|\bm{Wx}\|_2 \\
+          & = |\alpha| \|\x\|_{\bm{W}}
+        \end{split}\]
 
+      \item By distributing the multiplication by $\bm{W}$, we see
+        that all of the following statements are equivalent:
+        \[\begin{split}
+          \|\x + \y\|_{\bm{W}} & \leq \|\x\|_{\bm{W}} + \|\y\|_{\bm{W}} \\
+          \|\bm{W}(\x + \y)\|_2 & \leq \|\bm{Wx}\|_2 + \|\bm{Wy}\|_2 \\
+          \|\bm{Wx} + \bm{Wy}\|_2 & \leq \|\bm{Wx}\|_2 + \|\bm{Wy}\|_2 \\
+        \end{split}\]
+        We know the last version is satisfied because $\|\cdot\|_2$
+        satisfies the triangle inequality.
+      \end{enumerate}
 
-	\item Consider a real square matrix $\bm{M}\in\R^{n\times n}$. Suppose $\bm{M}$ is symmetric and full rank. Furthermore, suppose $\bm{M}$ is positive definite, i.e. it satisfies
+      If $\bm{W}$ is singular, then $\|\cdot\|_{\bm{W}}$ is {\em not}
+      a norm; by selecting a non-zero $\x \in \vnull(\bm{W})$, we can
+      violate the first, second, or third properties of a norm.
+
+	\item Consider a real square matrix $\bm{M}\in\R^{n\times
+      n}$. Suppose $\bm{M}$ is symmetric and full rank. Furthermore,
+      suppose $\bm{M}$ is positive definite, i.e. it satisfies
 	  \[
 	  \forall\x\in\R^n,~\x\neq\bm{0}\implies \x^T\bm{Mx}>0.
 	  \]
@@ -69,7 +98,44 @@
 	  \]
 	  is an inner product on $\R^n$.
 
-	  \solution Your solution.
+	  \solution Checking the five properties of an inner product:
+      \begin{enumerate}
+      \item $\la \x,\x\ra_{\bm{M}} \geq 0~\forall~\x$ is true by the
+        definition of a positive definite matrix.
+
+      \item $\la \x,\x\ra_{\bm{M}} = 0 \implies \x = \bm{0}$ is also
+        true because $\bm{M}$ is a square matrix of full rank,
+        $\vnull(\bm{M}) = \{\bm{0}\}$.
+
+      \item
+        \[\begin{split}
+        \la \alpha \x,\y\ra_{\bm{M}} &= (\alpha\x)^T\bm{My} \\
+        &= \alpha(\x^T\bm{My}) \\
+        &= \alpha \la \x,\y\ra_{\bm{M}}
+        \end{split}\]
+        
+      \item
+        \[\begin{split}
+        \la \x,\y\ra_{\bm{M}} &= \x^T\bm{My} \\
+        &= \y^T\bm{M}^T\x \\
+        &= \y^T\bm{M}\x \\
+        &= \la \y,\x\ra_{\bm{M}}
+        \end{split}\]
+        Since $\la \cdot,\cdot\ra_{\bm{M}} \in \R$, and a scalar is equal to
+        it's transpose, we rewrite the expression in step 2 using the
+        rule of matrix products and the transpose operator.  Since
+        $\bm{M}$ is symmetric, $\bm{M}^T = \bm{M}$ in the third step.
+        
+      \item
+        \[\begin{split}
+        \la \x + \z,\y\ra_{\bm{M}} &= (\x + \z)^T\bm{My} \\
+        &= \x^T\bm{My} + \z^T\bm{My} \\
+        &= \la \x,\y\ra_{\bm{M}} + \la \z,\y\ra_{\bm{M}}
+        \end{split}\]
+      \end{enumerate}
+
+      $\la\cdot,\cdot\ra_{\bm{M}}:\R^n\to\R$ therefore satisfies all
+      five properties required of an inner product.
 
 	\item Show that the function $\la\cdot,\cdot\ra:C^0([-1,1],\R)\to\R$ given by 
 	  \[
@@ -77,7 +143,40 @@
 	  \]
 	  is an inner product on $C^0([-1,1],\R)$. Note that $C^0([-1,1],\R)$ denotes the space of continuous functions that take input from [-1,1] and produce output in $\R$.
 
-	  \solution Your solution.
+	  \solution Checking the five properties of an inner product:
+      \begin{enumerate}
+      \item $\forall~f \neq 0, \la f,f\ra \geq 0$, since the product $f(x)f(x) = f^2(x)$ is always non-negative. ($f(x) \in \R$.)
+
+      \item From the above we know that $\la f,f\ra = 0 \implies f(x)
+        = 0$, (which is the zero element for this operator) since if
+        $f$ were anywhere $\neq 0$ on the interval $[-1,1]$, the
+        integral would be positive.
+
+      \item 
+        \[\begin{split}
+        \la \alpha f,g\ra &= \int^1_{-1}\alpha f(x)g(x)dx \\
+         &= \alpha \int^1_{-1}f(x)g(x)dx \\
+         &= \alpha \la f,g\ra
+        \end{split}\]
+        
+      \item
+        \[\begin{split}
+        \la f,g\ra &= \int^1_{-1} f(x)g(x)dx \\
+         &= \int^1_{-1}g(x)f(x)dx \\
+         &= \la g,f\ra
+        \end{split}\]
+        
+      \item
+        \[\begin{split}
+        \la f + h,g\ra &= \int^1_{-1} (f(x) + h(x))g(x)dx \\
+        &= \int^1_{-1} (f(x)g(x) + h(x)g(x))dx \\
+        &= \int^1_{-1} f(x)g(x) dx + \int^1_{-1} h(x)g(x) dx \\
+        &= \la f,g\ra + \la h,g\ra 
+        \end{split}\]
+
+      \end{enumerate}
+
+      $\la f,g \ra$ therefore satisfies all five properties required of an inner product.
 
     \end{enumerate}
 
@@ -92,9 +191,23 @@
 
 	  \solution
 	  \begin{enumerate}
-	  \item Your solution.
-	  \item Your solution.
-	  \item Your solution.
+	  \item $\|\bm{O}\|_2 = \vmax \frac{\|\bm{O}\x\|_2}{\|\x\|_2}$, but
+        since $\bm{O}$ is orthogonal, we know that $\|\bm{O}\x\|_2 =
+        \|\x\|_2$ for all $\x$. So this reduces to $\|\bm{O}\|_2 = \vmax
+        \frac{\|\bm{O}\x\|_2}{\|\x\|_2} = \vmax
+        \frac{\|\x\|_2}{\|\x\|_2} = 1$.
+
+	  \item By definition, an orthogonal matrix is a square matrix
+        with $\bm{O}^T = \bm{O}^{-1}$. By inverting both sides, we can
+        see that $(\bm{O}^T)^{-1} = \bm{O}$. Since the inverse of
+        $\bm{O}^T$ is equal to its tranpose, $\bm{O}^T$ is orthogonal.
+
+	  \item $\kappa_2(\bm{O}) = \|\bm{O}\|_2 \|\bm{O}^{-1}\|_2$, but
+        by definition, $\bm{O}^{-1} = \bm{O}^T$, so this is equivalent
+        to $\|\bm{O}\|_2 \|\bm{O}^T\|_2$. From the previous problems,
+        we know that $\bm{O}^T$ is orthogonal and that the the 2-norm
+        of any orthogonal matrix is 1. So this reduces to
+        $$\kappa_2(\bm{O}) = \|\bm{O}\|_2 \|\bm{O}^T\|_2 = 1$$
 	  \end{enumerate}
     \end{enumerate}
 
@@ -112,7 +225,7 @@
 	  \item
         Each element of the sum requires a single addition, and there
         are $m \times n$ elements in $\A + \bm{B} \in \R^{m \times n}$, so
-        this is O($m \times n$).
+        this is O($mn$).
 
       \item $\bm{uv}^T \in \R^{n \times n}$, and each element of the
         product requires a single multiplication, so the total
@@ -120,12 +233,12 @@
 
       \item This is equivalent to $n$ dot-products of $n$-dimensional
         vectors. Each dot-product requires $n$ multiplies and $n-1$
-        additions, or $2n - 1$ total flops. So the time complexity for
-        $n$ dot-products is O($n^2$).
+        additions, or $2n - 1$ total flops. So the total operation
+        count is $2n^2 - n$, or O($n^2$).
 
         Note that because $\A$ is upper-triangular, only half of the
-        multiplies will be with non-zero components, but the resulting
-        reduction in flops of $\half$ is irrelevant for big-oh.
+        operations will be with non-zero components, but the resulting
+        reduction in flops of $\half$ is irrelevant for big-O.
 	  \end{enumerate}
 
 
@@ -138,6 +251,7 @@
       like Wolfram Alpha to compute some of these quantities).
 
 	  \solution
+      \begin{center}
       \begin{tabular}{|r||r|r|r|r|r|r|}
         \hline
         & 2 & 4 & 8 & 16 & 64 & 512 \\
@@ -145,7 +259,7 @@
         \hline
         $n$ & 2 & 4 & 8 & 16 & 64 & 512 \\
         \hline
-        $n log_2(n)$ & 2 & 8 & 24 & 64 & 384 & 4608 \\
+        $n\log_2(n)$ & 2 & 8 & 24 & 64 & 384 & 4608 \\
         \hline
         $n^2$ & 4 & 16 & 64 & 256 & 4096 & $2.621 \times 10^{5}$ \\
         \hline
@@ -156,7 +270,7 @@
         $n!$ & 2 & 24 & 40320 & $2.092 \times 10^{13}$ & $1.268 \times 10^{89}$ & $3.477 \times 10^{1166}$ \\
         \hline
       \end{tabular}
-      
+      \end{center}
     \end{enumerate}
 
 \end{document}
