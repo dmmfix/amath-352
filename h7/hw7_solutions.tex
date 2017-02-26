@@ -4,7 +4,7 @@
 \usepackage{enumerate}		% For lists indexed by letters
 \usepackage{bm}				% For bold letters
 \usepackage{enumitem}		% So we can resume counting problem numbers after
-							% interrupting with text
+% interrupting with text
 \usepackage{hyperref}		% For clickable URL links
 \usepackage{url}			% So file names won't create hboxes
 \usepackage[margin=1in]{geometry}	% Make margins wider
@@ -16,16 +16,24 @@
 
 
 % Set some useful commands
-\newcommand{\half}{\frac{1}{2}}			% 1/2
+\newcommand{\A}{\bm{A}}					% Bold (matrix) A
+\newcommand{\ML}{\bm{L}}				% Bold (matrix) L
+\newcommand{\MU}{\bm{U}}				% Bold (matrix) U
 \newcommand{\R}{\mathbb{R}}				% Reals symbol
 \newcommand{\bbm}{\begin{bmatrix}}		% Begin bmatrix environment
 \newcommand{\ebm}{\end{bmatrix}}		% End bmatrix environment
-\newcommand{\x}{\bm{x}}					% Bold (vector) x
-\newcommand{\y}{\bm{y}}					% Bold (vector) y
-\newcommand{\A}{\bm{A}}					% Bold (matrix) A
-\newcommand{\vspan}{\mathrm{span}}		% To use the word span in math mode
+\newcommand{\half}{\frac{1}{2}}			% 1/2
 \newcommand{\la}{\langle}				% Left angled bracket <
 \newcommand{\ra}{\rangle}				% Right angled bracket >
+\newcommand{\vdim}{\mathrm{dim}}		% To use the word span in math mode
+\newcommand{\vmax}{\mathrm{max}}		% To use the word span in math mode
+\newcommand{\vnull}{\mathrm{null}}		% To use the word span in math mode
+\newcommand{\vrange}{\mathrm{range}}		% To use the word span in math mode
+\newcommand{\vrank}{\mathrm{rank}}		% To use the word span in math mode
+\newcommand{\vspan}{\mathrm{span}}		% To use the word span in math mode
+\newcommand{\x}{\bm{x}}					% Bold (vector) x
+\newcommand{\y}{\bm{y}}					% Bold (vector) y
+\newcommand{\z}{\bm{z}}					% Bold (vector) z
 
 % Place this command after each problem, before solution (examples below)
 \newcommand{\solution}{\vskip 0.5cm \textbf{\large Solution:} \\}
@@ -37,190 +45,69 @@
 \begin{document}
 
 \maketitle
-{\Large \textbf{Due: Friday March 3, 2017}} \\
+    {\Large \textbf{Due: Friday March 3, 2017}} \\
 
-\section*{LU factorization:}
-\begin{enumerate}
+    \section*{LU factorization:}
+    \begin{enumerate}
 	\item In deriving the LU factorization we implicitly relied on the fact that the product of two lower triangular matrices is also lower triangular. Prove this result for the specific case of lower triangular matrices in $\R^{3\times3}$. That is prove that the product of two lower triangular $3\times3$ matrices is also lower triangular.
 	\item Using the results from lecture, what is the inverse of each of the following matrices?
-	\begin{enumerate}
-		\item $\bbm 1&0&0\\0&1&0\\0&m_1&1 \ebm$
-		\item $\bbm 1&0&0\\m_1&1&0\\m_2&0&1 \ebm$
-		\item $\bbm 1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&5&1 \ebm \bbm 1&0&0&0\\0&1&0&0\\0&3&1&0\\0&9&0&1 \ebm \bbm 1&0&0&0\\6&1&0&0\\-2&0&1&0\\8&0&0&1\ebm $
-	\end{enumerate}
+	  \begin{enumerate}
+	  \item $\bbm 1&0&0\\0&1&0\\0&m_1&1 \ebm$
+	  \item $\bbm 1&0&0\\m_1&1&0\\m_2&0&1 \ebm$
+	  \item $\bbm 1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&5&1 \ebm \bbm 1&0&0&0\\0&1&0&0\\0&3&1&0\\0&9&0&1 \ebm \bbm 1&0&0&0\\6&1&0&0\\-2&0&1&0\\8&0&0&1\ebm $
+	  \end{enumerate}
 
-	\solution
-	\begin{enumerate}
-		\item Your solution
-		\item Your solution
-		\item Your solution
-	\end{enumerate}
+	  \solution
+	  \begin{enumerate}
+	  \item $\bbm 1&0&0\\0&1&0\\0&m_1&1 \ebm^{-1} = \bbm 1&0&0\\0&1&0\\0&-m_1&1 \ebm$
+	  \item $\bbm 1&0&0\\m_1&1&0\\m_2&0&1 \ebm^{-1} = \bbm 1&0&0\\-m_1&1&0\\-m_2&0&1 \ebm$
+	  \item
+        $\left(\bbm 1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&5&1 \ebm \bbm 1&0&0&0\\0&1&0&0\\0&3&1&0\\0&9&0&1 \ebm \bbm 1&0&0&0\\6&1&0&0\\-2&0&1&0\\8&0&0&1\ebm \right)^{-1} =
+        \bbm 1&0&0&0\\-6&1&0&0\\2&-3&1&0\\-8&-9&-5&1 \ebm$
+	  \end{enumerate}
 
 
 	\item Compute, by hand, the LU decomposition of the following matrices. Show your work.
-	\begin{enumerate}
-		\item $\bbm 2&1&3\\4&1&2\\0&7&8 \ebm $
-		\item $\bbm 2&1&2&3\\4&0&5&11\\12&10&15&-13\\8&6&12&-1 \ebm $
-	\end{enumerate}
+	  \begin{enumerate}
+	  \item $\bbm 2&1&3\\4&1&2\\0&7&8 \ebm $
+	  \item $\bbm 2&1&2&3\\4&0&5&11\\12&10&15&-13\\8&6&12&-1 \ebm $
+	  \end{enumerate}
 
-	\solution
-	\begin{enumerate}
-		\item Your solution
-		\item Your solution
-	\end{enumerate}
+	  \solution
+	  \begin{enumerate}
+	  \item
+        \[\begin{split}
+        \bbm 1&0&0 \\ -2&1&0 \\ 0&0&1 \ebm \bbm 2&1&3\\4&1&2\\0&7&8 \ebm &= \bbm 2&1&3\\0&-1&-4\\0&7&8 \ebm \\
+        \bbm 1&0&0 \\ 0&1&0 \\ 0&7&1 \ebm \bbm 1&0&0 \\ -2&1&0 \\ 0&0&1 \ebm \bbm 2&1&3\\4&1&2\\0&7&8 \ebm &= \bbm 2&1&3\\0&-1&-4\\0&0&-20 \ebm \\
+        \ML = \bbm 1&0&0 \\ 2&1&0 \\ 0&-7&1 \ebm&,~\MU = \bbm 2&1&3\\0&-1&-4\\0&0&-20 \ebm
+        \end{split}\]
+	  \item
+        \[\begin{split}
+        \bbm 1&0&0&0 \\ -2&1&0&0 \\ -6&0&1&0 \\ -4&0&0&1 \ebm \bbm 2&1&2&3\\4&0&5&11\\12&10&15&-13\\8&6&12&-1 \ebm &= \bbm 2&1&2&3\\0&-2&1&5\\0&4&3&-31\\0&2&4&-13 \ebm \\
+        \bbm 1&0&0&0 \\ 0&1&0&0 \\ 0&2&1&0 \\ 0&1&0&1 \ebm \bbm 1&0&0&0 \\ -2&1&0&0 \\ -6&0&1&0 \\ -4&0&0&1 \ebm \bbm 2&1&2&3\\4&0&5&11\\12&10&15&-13\\8&6&12&-1 \ebm &= \bbm 2&1&2&3\\0&-2&1&5\\0&0&5&-21\\0&0&5&-8 \ebm \\
+        \bbm 1&0&0&0 \\ 0&1&0&0 \\ 0&0&1&0 \\ 0&0&-1&1 \ebm \bbm 1&0&0&0 \\ 0&1&0&0 \\ 0&2&1&0 \\ 0&1&0&1 \ebm \bbm 1&0&0&0 \\ -2&1&0&0 \\ -6&0&1&0 \\ -4&0&0&1 \ebm \bbm 2&1&2&3\\4&0&5&11\\12&10&15&-13\\8&6&12&-1 \ebm &= \bbm 2&1&2&3\\0&-2&1&5\\0&0&5&-21\\0&0&0&13 \ebm \\
+        \ML = \bbm 1&0&0&0 \\ 2&1&0&0 \\ 6&-2&1&0 \\ 4&-1&1&1 \ebm &,~\MU = \bbm 2&1&2&3\\0&-2&1&5\\0&0&5&-21\\0&0&0&13 \ebm
+        \end{split}\]
+	  \end{enumerate}
 
 	\item Given the following LU factorization $\A=\bm{LU}$ and the vectors $\x,\y$:
-	\[
-		\bm{L}=\bbm 1&0&0\\1&1&0\\0&1&1\ebm,\quad \bm{U}=\bbm 1&0&1\\0&1&1\\0&0&1\ebm,\quad \x=\bbm 1\\0\\1\ebm, \quad \y=\bbm -1\\1\\1\ebm
-	\]
-	compute
-	\[
-		\A^{-1}\x + \A^{-2}\y
-	\]
-	without forming $\A$, $\A^2$, $\A^{-1}$, or $\A^{-2}$ explicitly. Show your work.
+	  \[
+	  \bm{L}=\bbm 1&0&0\\1&1&0\\0&1&1\ebm,\quad \bm{U}=\bbm 1&0&1\\0&1&1\\0&0&1\ebm,\quad \x=\bbm 1\\0\\1\ebm, \quad \y=\bbm -1\\1\\1\ebm
+	  \]
+	  compute
+	  \[
+	  \A^{-1}\x + \A^{-2}\y
+	  \]
+	  without forming $\A$, $\A^2$, $\A^{-1}$, or $\A^{-2}$ explicitly. Show your work.
 
-	\solution
-	Your solution
+	  \solution
+      \[\begin{split}
+      \A^{-1}\x &= (\bm{LU})^{-1}\x \\
+      &= \bm{U}^{-1}\bm{L}^{-1}\x \\
+      
+      \end{split}\]
+	  Your solution
 
-\end{enumerate}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 									Bonus LaTeX											%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% You don't need the following LaTeX code in your writeup, but you might find the definition
-% of the matrix A useful for inputting things into Matlab (use find + replace)
-
-
-\section*{Matlab:}
-Create and submit to Scorelator a single Matlab script (.m file) which performs the following tasks along with the function file \texttt{rel\_err.m} which contains the implementation of your relative error function. Your code should generate the dat files \texttt{A1.dat}, \texttt{A2.dat},$\dots$, and \texttt{A7.dat}.
-
-\begin{enumerate}[resume]
-	\item \textbf{Forces on a Bridge:}
-	Consider the bridge truss shown below.  
-	\begin{center}
-	\includegraphics[width=0.9\textwidth]{bridge}
-	\end{center}
-	Given a vector of external forces $\bm{b}$ at any of the positions 1-13, we can compute the forces $\x = \left[\bm{F_1},\bm{F_2},\dotsc,\bm{F_{13}}\right]^T$ by solving the system
-	\begin{equation*}
-	\A\x = \bm{b}, 
-	\end{equation*}
-	where $\A$ is given by 
-	\begin{equation*}
-	\A= \left[\begin{array}{ccccccccccccc} -s & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & s & 0 & 0 & 0 \\ -s & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -1 & -s & 0 & 0 & 0 \\ 0 & -1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -1 & 0 & 0 \\ 0 & 0 & -1 & s & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -s & 0 \\ 0 & 0 & 0 & -s & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -s & -1 \\ 0 & 0 & 0 & -s & -1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 & -1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 & 0 & 1 & -1 & 0 & 0 & -s & 0 & s & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & s & 1 & s & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 1 & -1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \end{array} \right]
-	\end{equation*}
-	and $s = \sqrt{2}/2$.  
-
-	We will solve for the vector of forces $\x$ assuming that there are 5 ton vehicles sitting at nodes 6, 7 and 8.  This means that $\bm{b} = [0,0,0,0,0,0,0,0,5,0,5,0,5]^T$.  
-
-	\begin{enumerate}
-		\item Solve for $\x$ using the LU-decomposition.  (Use the \texttt{lu} command in Matlab.)  Save the intermediate answer $\bm{y}$ as \texttt{A1.dat} and the final answer $\x$ as \texttt{A2.dat}.  
-
-		\item Solve for $\x$ using the backslash command.  Save your answer as \texttt{A3.dat}. To solve the equation $\A\x=\bm{b}$ for $\x$ with the backslash command in Matlab, simply type \texttt{x = A \textbackslash b}. This is roughly equivalent to setting \texttt{x} equal to \texttt{inv(A) * b} (\texttt{inv(A)} computes the inverse of \texttt{A}), but it is more stable, efficient, and is the preferred way to solve the system.
-
-		\item Now suppose that we add weight to the middle truck (which corresponds to the 11th entry of $\bm{b}$) in increments of 0.01 tons until the bridge collapses.  Each bridge member is rated for no more than 30 tons of compression or tension (i.e., positive or negative forces.)  That is, the bridge will collapse when the absolute value of the largest force exceeds 30. Find the weight of the middle truck at the exact moment the bridge collapses. You should re-use the LU-decomposition you computed earlier in the problem. Save your answer as \texttt{A4.dat}.
-
-		Note: you need to find the lowest weight of the middle truck such that the maximum force at any one point is greater than or equal to 30.  
-
-		*Hint*: You can find the absolute value of the largest entry in a vector $\x$ using the infinity norm. In Matlab, this is \texttt{norm(x,Inf)}. 
-	\end{enumerate}
-
-
-	\item Watch the video tutorial on writing a Matlab function that performs Gaussian Elimination (and, with a slight modification, LU factorization), located at \url{https://youtu.be/QiZ-geoAaaM}. If you are comfortable enough with Matlab and the LU factorization that you think you can discern what is happening in the code below, you may choose to skip the video.
-
-	Code similar to that in the video is given below. Notice that the method of Gaussian Elimination presented in the video is slightly different from the one presented in class. Namely it computes a different ratio, \texttt{fac}, than was introduced in class, which causes the row replacement procedure to change marginally. Here we have included code that \textit{is} associated with the method from class.
-
-	\begin{verbatim}
-		function [A] = GE_NMM(A)
-		% Gaussian Elimination code
-			%A = [1 6 2 0; 3 2 4 -1; 1 6 1 1; 2 1 3 0];
-			N = length(A);
-
-			% for each pivot along the diagonal
-			for ii = 1:N-1
-			    % for each row under the pivot
-			    for jj=ii+1:N
-		            % factor is ratio between pivot value
-		            % and entry below pivot in row jj
-		            fac = A(jj,ii) / A(ii,ii);
-
-		            % row replacement operation
-		            A(jj,:) = A(jj,:) - fac * A(ii,:);
-			    end
-			end
-
-		end
-	\end{verbatim}
-
-	\begin{enumerate}
-		\item As written, the code transforms \texttt{A} into an upper triangular matrix (\texttt{U} in the LU-factorization), but does not generate the lower triangular matrix in the LU-factorization, \texttt{L}. Modify the function so that it also gives \texttt{L} as output. To make it so that your function produces a second output, \texttt{L}, you need to change the function declaration from 
-		\begin{verbatim}
-			function [A] = GE_NMM(A)
-		\end{verbatim}
-		to 
-		\begin{verbatim}
-			function [L,A] = GE_NMM(A)
-		\end{verbatim}
-
-		At some point in the body of your function you must define the variable \texttt{L} so that the function has something to output for \texttt{L}.
-
-		Here is an example of the implementation of a function named \texttt{stat} which returns the mean and standard deviation of an input vector \texttt{x}:
-		\begin{verbatim}
-			function [m,stdev] = stat(x)
-			    n = length(x);
-			    m = sum(x) / n;
-			    stdev = sqrt(sum(((x - m).^2) / n));
-			end
-		\end{verbatim}
-
-		Note that you can test your code for this part by constructing a random square matrix, feeding it into your function, then verifying that the product of the two matrices your function returns gives the original matrix, e.g. by checking that \texttt{norm(A - L * U)} is very small.
-
-		\item Notice that in performing Gaussian elimination the function \texttt{GE\_NMM} subtracts entire rows of \texttt{A} from one another. However, at the $k$th step of elimination, all the entries below the diagonal in columns 1 through $k-1$ have been zeroed out already. Therefore we making Matlab use unnecesary floating point operations to add and subtract multiples of 0 from one another. Modify the code so that it avoids these extraneous operations.
-
-		\item Modify the function \texttt{GE\_NMM} so that it gives as a \textit{third} output the exact number of floating point operations the method needed to use. For example, if one wanted to make a function that output the 2-norm of a vector and the number of floating point operations required to do so, one implementation would be the following
-		\begin{verbatim}
-			function [op_count, nrm] = two_norm(x)
-			    % Length of vector x
-			    n = length(x);
-    
-			    % Variable in which to track flops
-			    op_count = 0;
-    
-			    % Variable where the norm will be stored
-			    nrm = 0;
-    
-			    % Loop over entries in x
-			    for i = 1:n
-			        % Add contribution to norm
-			        nrm = nrm + x(i)^2;
-    
-			        % One addition and one multiplication
-			        op_count = op_count + 2;
-			    end
-    
-			    % Take square root to get the 2-norm
-			    nrm = sqrt(nrm);
-    
-			    % We need to subtract one from op_count because the first addition was
-			    % unnecessary (since it was 0 + x(1)^2)
-			    op_count = op_count - 1;
-			end
-		\end{verbatim}
-
-		You can check that your code is correct by comparing the number of floating point operations it counts against the number we derived in class.
-
-		\item Paste the following code in your script to generate the matrix \texttt{A}:
-		\begin{verbatim}
-			rng(10,'twister');
-			A = rand(50,50);
-		\end{verbatim}
-		Use your modified version of \texttt{GE\_NMM} to compute the LU factorization of \texttt{A} and to count the number of floating point operations required. Store \texttt{L}, \texttt{U}, and the number of floating point operations used in \texttt{A5.dat}, \texttt{A6.dat}, and \texttt{A7.dat}, respectively.
-
-	\end{enumerate}
-
-	\textbf{Be sure to submit both your .m files to Scorelator and to highlight the one that generates the dat files!}
-
-\end{enumerate}
+    \end{enumerate}
 
 \end{document}
