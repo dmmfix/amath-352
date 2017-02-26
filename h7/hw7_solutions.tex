@@ -101,12 +101,48 @@
 	  without forming $\A$, $\A^2$, $\A^{-1}$, or $\A^{-2}$ explicitly. Show your work.
 
 	  \solution
+
+      $\A^{-1}\x = (\bm{LU})^{-1}\x = \bm{U}^{-1}\bm{L}^{-1}\x$. We
+      may solve for $\x' = \bm{L}^{-1}\x$ by forward substituion using
+      $\bm{L}$, and then solve for $\bm{U}^{-1}\x'$ by using
+      back-substitution through $\bm{U}$.
+
       \[\begin{split}
-      \A^{-1}\x &= (\bm{LU})^{-1}\x \\
-      &= \bm{U}^{-1}\bm{L}^{-1}\x \\
-      
+      \x' & = \bm{L}^{-1}\x \\
+      \x'_1 = 1, ~ \x'_2 = \frac{0 - 1}{1} = -1&, ~ \x'_3 = \frac{1 - -1}{1} = 2 \\
+      \x' & = \bbm 1 \\ -1 \\ 2 \ebm \\
+      \A^{-1}\x = \z & = \bm{U}^{-1}\x' \\
+      \z_3 = 2, ~ \z_2 = \frac{-1 -2}{1} = -3&, ~ \z_1 = \frac{1 - 2}{1} = -1 \\
+      \A^{-1}\x &= \bbm -1 \\ -3 \\ 2 \ebm
       \end{split}\]
-	  Your solution
+
+      To form $\A^{-2}\y$, let's instead evaluate the substitution
+      steps symbolically, and then simply turn the crank four
+      times. For $\bm{L}^{-1}$ we want to find $\x$, where
+      \[\begin{split}
+        \bm{Lx} &= \bbm a\\b\\c \ebm \\
+        \x_1 &= a \\
+        \x_2 = b - \x_1 &= b - a \\
+        \x_3 = c - \x_2 &= c - (b - a)
+      \end{split}\]
+      Since all of the pivot values are 1, these are straightforward
+      to write down. Similarly for $\bm{U}^{-1}$ we want
+      \[\begin{split}
+        \bm{Ux} &= \bbm a\\b\\c \ebm \\
+        \x_3 &= c \\
+        \x_2 = b - \x_3 &= b - c \\
+        \x_1 = a - \x_3 &= a - c
+      \end{split}\]
+      We are now ready to compute the last term of the sum:
+      \[\begin{split}
+      \A^{-2}\y &= \bm{U}^{-1}\bm{L}^{-1}\bm{U}^{-1}\bm{L}^{-1}\y \\
+      &= \bm{U}^{-1}\bm{L}^{-1}\bm{U}^{-1}\bbm -1\\2\\-1 \ebm \\
+      &= \bm{U}^{-1}\bm{L}^{-1}\bbm 0\\3\\-1 \ebm \\
+      &= \bm{U}^{-1}\bbm 0\\3\\-4 \ebm \\
+      &= \bbm 4\\7\\-4 \ebm
+      \end{split}\]
+      And finally:
+      $$\A^{-1}\x + \A^{-2}\y = \bbm -1\\-3\\2 \ebm + \bbm 4\\7\\-4 \ebm = \bbm 3\\4\\-2 \ebm$$
 
     \end{enumerate}
 
