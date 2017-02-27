@@ -31,7 +31,7 @@ while abs(upper - lower) > 0.00001
     probe = (lower + upper) / 2;
     bprobe(11) = probe;
     
-    f = A\bprobe;
+    f = U \ (L \ bprobe);
     if (norm(f,inf) >= 30)
         upper = probe;
     else
@@ -47,6 +47,9 @@ save('A4.dat', 'breakmass', '-ascii');
 rng(10,'twister');
 ARand = rand(50,50);
 [l,u,op] = ge_nmm(ARand);
-save('A5.dat', 'l', '-ascii');
-save('A6.dat', 'u', '-ascii');
+
+lc50 = l(:,50);
+uc50 = u(:,50);
+save('A5.dat', 'lc50', '-ascii');
+save('A6.dat', 'uc50', '-ascii');
 save('A7.dat', 'op', '-ascii');
