@@ -1,0 +1,189 @@
+\documentclass[]{article}
+\usepackage{amsmath}		% For generic math symbols
+\usepackage{amssymb}		% For mathbb
+\usepackage{enumerate}		% For lists indexed by letters
+\usepackage{bm}				% For bold letters
+\usepackage{enumitem}		% So we can resume counting problem numbers after
+							% interrupting with text
+\usepackage{hyperref}		% For clickable URL links
+\usepackage{url}			% So file names won't create hboxes
+\usepackage[margin=1in]{geometry}	% Make margins wider
+\usepackage{graphicx}		% For bridge image
+
+
+
+\setlength{\parindent}{0pt}	% Turns off indentation
+
+
+% Set some useful commands
+\newcommand{\half}{\frac{1}{2}}			% 1/2
+\newcommand{\R}{\mathbb{R}}				% Reals symbol
+\newcommand{\bbm}{\begin{bmatrix}}		% Begin bmatrix environment
+\newcommand{\ebm}{\end{bmatrix}}		% End bmatrix environment
+\newcommand{\x}{\bm{x}}					% Bold (vector) x
+\newcommand{\y}{\bm{y}}					% Bold (vector) y
+\newcommand{\A}{\bm{A}}					% Bold (matrix) A
+\newcommand{\vspan}{\mathrm{span}}		% To use the word span in math mode
+\newcommand{\la}{\langle}				% Left angled bracket <
+\newcommand{\ra}{\rangle}				% Right angled bracket >
+
+% Place this command after each problem, before solution (examples below)
+\newcommand{\solution}{\vskip 0.5cm \textbf{\large Solution:} \\}
+
+
+\title{AMATH 352: Problem Set 8 Solutions}
+\author{Your name}
+
+\begin{document}
+
+\maketitle
+{\Large \textbf{Due: Friday March 10, 2017}} \\
+
+
+\section*{Least Squares:}
+\begin{enumerate}
+	\item Find the least squares solutions to the following linear systems by finding and solving the normal equations by hand (use Gaussian elimination). Show your work. You can check your answers by verifying that the residual is orthogonal to the columns of $\A$, i.e. that $\A^T\bm{r}=\bm{0}$.
+	\begin{enumerate}
+		\item $\A=\bbm 1\\3\\-1\ebm$ and $\bm{b}=\bbm 1\\1\\0\ebm$
+		\item $\A=\bbm 2&3\\4&-2\\1&5\ebm$ and $ \bm{b}=\bbm 2\\-1\\1\ebm$ 
+	\end{enumerate}
+
+	\solution
+	\begin{enumerate}
+		\item Your solution here
+		\item Your solution here
+	\end{enumerate}
+
+	\item \textbf{Linear regression:} For the following data \begin{tabular}{c|cccc}$t_i$&1&2&3&5\\ \hline$y_i$&1&0&-2&-3\end{tabular}, find the line $y=\alpha + \beta t$ that best fits the data in the least squares sense. You may use Matlab to help you solve this problem, but in your writeup you must derive the linear system $\A\bm{c}=\bm{b}$ that needs to be approximately solved. You do not need to include the code used to solve this problem in the script you submit to Scorelator.
+
+	\solution
+	Your solution here
+
+	\item One can also use the least squares methodology to approximate data using basis functions which are more general than polynomials. For example, one can also use trigonometric functions. Given the data \begin{tabular}{c|ccc}$t_i$&0&0.5&1\\\hline $y_i$&1&0.5&0.25\end{tabular}, find the trigonometric function of the form $g(t)=\alpha \cos(\pi t)+\beta\sin(\pi t)$ that best approximates the data in the least squares sense. To do this find and solve the normal equations by hand.
+
+	\solution
+	Your solution here
+
+	\item Consider the least squares problem
+	\[
+		\min_{\x}\|\A\x-\bm{b}\|_2^2.
+	\]
+	\begin{enumerate}
+		\item Show that if $\hat \x$ minimizes $\|\A\x-\bm{b}\|^2_2$, then so does $\hat \x+\bm{w}$ for any $\bm{w}\in N(\A)$. Here we have dropped the assumption from lecture that $N(\A)=\{\bm{0}\}$.
+		\item Show that if $\bm{u}$ and $\bm{v}$ are both least-squares solutions to $\A\x=\bm{b}$, then $\bm{u}-\bm{v}\in N(\A)$.
+		\item Suppose now that $\A$ satisfies $\A^T\A=\bm{I}$. In this case, you can write down a closed form solution for $\hat \x$. Derive this solution. Note that $\A$ is not necessarily orthogonal since it may not be square, e.g. $\A=\bbm 1&0\\0&1\\0&0\ebm$ satisfies $\A^T\A=\bm{I}$, but it is not orthogonal.
+	\end{enumerate}
+
+	\solution
+	\begin{enumerate}
+		\item Your solution here
+		\item Your solution here
+		\item Your solution here
+	\end{enumerate}
+
+	\item Suppose $\A\in\R^{m\times n}$, $m\geq n$, rank$(\A)=n$, and we have access to the reduced singular value decomposition (SVD) of $\A$:
+	\[
+		\A = \bm{\hat U \hat \Sigma V}^T.
+	\]
+	Here $\bm{\hat U}\in\R^{m\times n}$ has orthonormal columns (so $\bm{\hat U}^T\bm{\hat U}=\bm{I}\in\R^{n\times n}$, but $\bm{\hat U}$ is not orthogonal unless it is square), $\bm{\hat \Sigma}\in\R^{n\times n}$ is a diagonal matrix with positive entries on the diagonal, and $\bm{V}\in\R^{n\times n}$ is an orthogonal matrix.
+
+	Derive a method of solving the least squares problem $\min_x\|\A\x-\bm{b}\|_2^2$ using the SVD of $\A$. You should end up with a linear equation to solve which involves at most one instance of $\bm{\hat U},~\bm{\hat\Sigma},$ and $\bm{V}$. Hint: plug the SVD of $\A$ into the normal equations.
+
+	\solution
+	Your solution here
+
+\end{enumerate}
+
+% 
+% Some potentially handy Matlab code
+% 
+
+
+%  Code used to make the table in problem 6
+
+	% \begin{figure}
+	% 	\centering
+	% 	\begin{tabular}{|c|c|}
+	% 		\hline
+	% 		Years after 1900 (t) & Population (y) \\ \hline
+	% 		00	& 75.995 \\ \hline
+	% 		10	& 91.972 \\ \hline
+	% 		20	& 105.711 \\ \hline
+	% 		30	& 123.203 \\ \hline
+	% 		40	& 131.669 \\ \hline
+	% 		50	& 150.697 \\ \hline
+	% 		60	& 179.323 \\ \hline
+	% 		70	& 203.212 \\ \hline
+	% 		80	& 226.505 \\ \hline
+	% 		90	& 249.633 \\ \hline
+	% 		100	& 281.422 \\ \hline
+	% 		110	& 308.745 \\ \hline
+	% 	\end{tabular}
+	% 	\caption{Total population of the USA measured in millions}
+	% 	\label{fig:pop}
+	% \end{figure}
+
+	
+
+% Some of the code from problem 7 in case you want to copy-paste
+
+	% \begin{verbatim}
+	% 	A = fliplr(vander(x));
+	% 	A = A(:,1:24);	
+	% \end{verbatim}
+
+	% \begin{verbatim}
+	% 	y = sin(5*x).';
+	% \end{verbatim}
+
+
+% Some of the code from problem 8
+
+	% \begin{verbatim}
+	% 	figure()
+	% 	hold on          % Make it so that both plots appear on same figure
+	% 	plot(t,y,'ro')   % Plot the original data points as red circles
+	% 	t_fine = linspace(0,4,1000);            % Define a finer grid
+	% 	y_apx = polyval(flipud(c),t_fine);      % Evaluate approximation on fine grid
+	% 	plot(t_fine,y_apx)                      % Plot approximation
+	% \end{verbatim}
+
+
+	% \begin{verbatim}
+	% 	y_apx_ridge = polyval(flipud(c_ridge),t_fine);
+	% 	plot(t_fine,y_apx_ridge)
+	% \end{verbatim}
+
+
+
+% Code from the bonus problem
+	% \begin{verbatim}
+	% 	n = 15;                           % Number of interpolating points
+
+	% 	x = linspace(-1,1,n);             % Set up the interpolating points
+	% 	f = @(x) 1 ./ (1 + (3*x).^2);     % Define the function f as above
+	% 	xfine = linspace(-1,1,1000);      % Set up a fine grid on which to plot interpolant
+
+	% 	c = polyfit(x,f(x),n-1);          % Solve the interpolation problem
+		
+	% 	figure()                          % Plot the results
+	% 	hold on
+	% 	plot(x,f(x),'ro')
+	% 	plot(xfine,polyval(c,xfine))
+	% 	title('Uniformly spaced points')
+	% 	hold off
+	% \end{verbatim}
+
+	% \begin{verbatim}
+	% 	xcheb = cos(pi*(0:(n-1)) / (n-1));          % Define Chebyshev points
+	% 	ccheb = polyfit(xcheb,f(xcheb),n-1);        % Solve interpolation problem
+
+	% 	figure()                                    % Plot results
+	% 	hold on
+	% 	plot(xcheb,f(xcheb),'ro')
+	% 	plot(xfine,polyval(ccheb,xfine))
+	% 	title('Chebyshev points')
+	% 	hold off
+	% \end{verbatim}
+
+\end{document}
