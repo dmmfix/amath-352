@@ -4,11 +4,12 @@
 \usepackage{enumerate}		% For lists indexed by letters
 \usepackage{bm}				% For bold letters
 \usepackage{enumitem}		% So we can resume counting problem numbers after
-							% interrupting with text
+% interrupting with text
 \usepackage{hyperref}		% For clickable URL links
 \usepackage{url}			% So file names won't create hboxes
 \usepackage[margin=1in]{geometry}	% Make margins wider
 \usepackage{graphicx}		% For bridge image
+\usepackage{mathtools}
 
 
 
@@ -23,6 +24,7 @@
 \newcommand{\x}{\bm{x}}					% Bold (vector) x
 \newcommand{\y}{\bm{y}}					% Bold (vector) y
 \newcommand{\A}{\bm{A}}					% Bold (matrix) A
+\newcommand{\vrange}{\mathrm{range}}		% To use the word span in math mode
 \newcommand{\vspan}{\mathrm{span}}		% To use the word span in math mode
 \newcommand{\la}{\langle}				% Left angled bracket <
 \newcommand{\ra}{\rangle}				% Right angled bracket >
@@ -32,74 +34,168 @@
 
 
 \title{AMATH 352: Problem Set 8 Solutions}
-\author{Your name}
+\author{Dave Moore, dmmfix@uw.edu}
 
 \begin{document}
 
 \maketitle
-{\Large \textbf{Due: Friday March 10, 2017}} \\
+    {\Large \textbf{Due: Friday March 10, 2017}} \\
 
 
-\section*{Least Squares:}
-\begin{enumerate}
+    \section*{Least Squares:}
+    \begin{enumerate}
 	\item Find the least squares solutions to the following linear systems by finding and solving the normal equations by hand (use Gaussian elimination). Show your work. You can check your answers by verifying that the residual is orthogonal to the columns of $\A$, i.e. that $\A^T\bm{r}=\bm{0}$.
-	\begin{enumerate}
-		\item $\A=\bbm 1\\3\\-1\ebm$ and $\bm{b}=\bbm 1\\1\\0\ebm$
-		\item $\A=\bbm 2&3\\4&-2\\1&5\ebm$ and $ \bm{b}=\bbm 2\\-1\\1\ebm$ 
-	\end{enumerate}
+	  \begin{enumerate}
+	  \item $\A=\bbm 1\\3\\-1\ebm$ and $\bm{b}=\bbm 1\\1\\0\ebm$
+	  \item $\A=\bbm 2&3\\4&-2\\1&5\ebm$ and $ \bm{b}=\bbm 2\\-1\\1\ebm$ 
+	  \end{enumerate}
 
-	\solution
-	\begin{enumerate}
-		\item Your solution here
-		\item Your solution here
-	\end{enumerate}
+	  \solution
+	  \begin{enumerate}
+	  \item We want $\A^T\A\x = \A^T\bm{b}$ so
+        \[\begin{split}
+        \bbm 1&3&-1\ebm \bbm 1\\3\\-1\ebm x &= \bbm 1&3&-1\ebm \bbm 1\\1\\0\ebm \\
+        11 x &= 4 \\
+        x &= \frac{4}{11}
+        \end{split}\]
+        Verifying:
+        \begin{gather*}
+          \bm{r} = \frac{4}{11} \bbm 1\\3\\-1\ebm - \bbm 1\\1\\0\ebm = \bbm -\frac{7}{11} \\ \frac{1}{11} \\ -\frac{4}{11} \ebm \\
+          \bm{A}^T\bm{r} = \bbm 1&3&-1\ebm \bbm -\frac{7}{11} \\ \frac{1}{11} \\ -\frac{4}{11} \ebm = \frac{-7 + 3 + 4}{11} = 0
+        \end{gather*}
+        
+        
+	  \item
+        \[\begin{split}
+        \bbm 2&4&1\\3&-2&5\ebm \bbm 2&3\\4&-2\\1&5\ebm \x &= \bbm 2&4&1\\3&-2&5\ebm \bbm 2\\-1\\1\ebm \\
+        \bbm 21 & 3 \\ 3 & 38 \ebm \x &= \bbm 1 \\ 13 \ebm \\
+        \bbm 1 & 0 \\ -\frac{1}{7} & 1 \ebm \bbm 21 & 3 \\ 3 & 38 \ebm \x &= \bbm 1 & 0 \\ -\frac{1}{7} & 1 \ebm \bbm 1 \\ 13 \ebm \\
+        \bbm 21 & 3 \\ 0 & 37 \frac{4}{7} \ebm \x &= \bbm 1 \\ 12 \frac{6}{7} \ebm
+        \end{split}\]
+        Solving the upper-triangular system by back-substitution
+        \begin{gather*}
+          37 \frac{4}{7} \x_2 = 12 \frac{6}{7} \implies \x_2 = 0.3422 \\
+          21 \x_1 + 3(0.3422) = 1 \implies \x_1 = -0.001266
+        \end{gather*}
+
+        Verifying:
+        \begin{gather*}
+          \bm{r} = \bbm 2&3\\4&-2\\1&5\ebm \bbm -0.001266 \\ 0.3422 \ebm - \bbm 2\\-1\\1\ebm = \bbm -0.9759 \\ 0.3105 \\ 0.7098 \ebm \\
+          \bm{A}^T\bm{r} = \bbm 2&4&1\\3&-2&5\ebm \bbm -0.9759 \\ 0.3105 \\ 0.7098 \ebm = \bm{0}
+        \end{gather*}
+
+      \end{enumerate}
 
 	\item \textbf{Linear regression:} For the following data \begin{tabular}{c|cccc}$t_i$&1&2&3&5\\ \hline$y_i$&1&0&-2&-3\end{tabular}, find the line $y=\alpha + \beta t$ that best fits the data in the least squares sense. You may use Matlab to help you solve this problem, but in your writeup you must derive the linear system $\A\bm{c}=\bm{b}$ that needs to be approximately solved. You do not need to include the code used to solve this problem in the script you submit to Scorelator.
 
-	\solution
-	Your solution here
+	  \solution We are finding a best fit curve in $\mathbb{P}_1$,
+      we'll use the standard basis $\{1, t\}$ for the space. So we
+      need to find the least-squares solution to the following linear
+      system:
+      \[
+      \min_{\x} \|\A\x - \bm{b}\|_2^2 = \min_{\x} \left\|\bbm 1 & 1 \\ 1 & 2 \\ 1 & 3 \\ 1 & 5 \ebm \x - \bbm 1\\0\\-2\\-3 \ebm \right\|_2^2
+      \]
+      The columns of $\A$ are simply the basis functions evaluated at $t_i$. Solving with backslash in Matlab, we obtain
+      $$ \x = \bbm 0.2286 \\ -0.6286 \ebm $$
 
 	\item One can also use the least squares methodology to approximate data using basis functions which are more general than polynomials. For example, one can also use trigonometric functions. Given the data \begin{tabular}{c|ccc}$t_i$&0&0.5&1\\\hline $y_i$&1&0.5&0.25\end{tabular}, find the trigonometric function of the form $g(t)=\alpha \cos(\pi t)+\beta\sin(\pi t)$ that best approximates the data in the least squares sense. To do this find and solve the normal equations by hand.
 
-	\solution
-	Your solution here
+	  \solution As in Problem 2, we want to find a least-squares
+      solution for a system in which the columns of our matrix are
+      simply the basis functions evaluated at $t_i$, which yields the
+      following system:
+      \begin{gather*}
+        \A = \bbm \cos(0) & \sin(0) \\ \cos(\pi/2) & \sin(\pi/2) \\ \cos(\pi) & \sin(\pi) \ebm = \bbm 1 & 0\\ 0 & 1 \\ -1 & 0 \ebm \\
+        \bm{b} = \bbm 1 \\ 0.5 \\ 0.25 \ebm
+      \end{gather*}
+      The normal equations for this system are
+      \[\begin{split}
+      \A^T\A\x &= \A^T\bm{b} \\
+      \bbm 1&0&-1\\0&1&0 \ebm \bbm 1 & 0\\ 0 & 1 \\ -1 & 0 \ebm \bbm \alpha\\\beta \ebm &= \bbm 1&0&-1\\0&1&0 \ebm \bbm 1 \\ 0.5 \\ 0.25 \ebm \\
+      \bbm 2&0\\0&1 \ebm \bbm \alpha\\\beta \ebm &= \bbm 0.75 \\ 0.5 \ebm
+      \end{split}\]
+      Since the matrix on the left is diagonal, we can read off the solution as
+      \[\begin{split}
+      \alpha &= 0.375 \\
+      \beta &= 0.5
+      \end{split}\]
+      
+      
+      
 
 	\item Consider the least squares problem
-	\[
-		\min_{\x}\|\A\x-\bm{b}\|_2^2.
-	\]
-	\begin{enumerate}
-		\item Show that if $\hat \x$ minimizes $\|\A\x-\bm{b}\|^2_2$, then so does $\hat \x+\bm{w}$ for any $\bm{w}\in N(\A)$. Here we have dropped the assumption from lecture that $N(\A)=\{\bm{0}\}$.
-		\item Show that if $\bm{u}$ and $\bm{v}$ are both least-squares solutions to $\A\x=\bm{b}$, then $\bm{u}-\bm{v}\in N(\A)$.
-		\item Suppose now that $\A$ satisfies $\A^T\A=\bm{I}$. In this case, you can write down a closed form solution for $\hat \x$. Derive this solution. Note that $\A$ is not necessarily orthogonal since it may not be square, e.g. $\A=\bbm 1&0\\0&1\\0&0\ebm$ satisfies $\A^T\A=\bm{I}$, but it is not orthogonal.
-	\end{enumerate}
+	  \[
+	  \min_{\x}\|\A\x-\bm{b}\|_2^2.
+	  \]
+	  \begin{enumerate}
+	  \item Show that if $\hat \x$ minimizes $\|\A\x-\bm{b}\|^2_2$, then so does $\hat \x+\bm{w}$ for any $\bm{w}\in N(\A)$. Here we have dropped the assumption from lecture that $N(\A)=\{\bm{0}\}$.
+	  \item Show that if $\bm{u}$ and $\bm{v}$ are both least-squares solutions to $\A\x=\bm{b}$, then $\bm{u}-\bm{v}\in N(\A)$.
+	  \item Suppose now that $\A$ satisfies $\A^T\A=\bm{I}$. In this case, you can write down a closed form solution for $\hat \x$. Derive this solution. Note that $\A$ is not necessarily orthogonal since it may not be square, e.g. $\A=\bbm 1&0\\0&1\\0&0\ebm$ satisfies $\A^T\A=\bm{I}$, but it is not orthogonal.
+	  \end{enumerate}
 
-	\solution
-	\begin{enumerate}
-		\item Your solution here
-		\item Your solution here
-		\item Your solution here
-	\end{enumerate}
+	  \solution
+	  \begin{enumerate}
+	  \item Since $\bm{w}\in N(\A)$, we can see that $$\|\A(\x +
+        \bm{w})-\bm{b}\|^2_2 = \|(\A\x + \A\bm{w})-\bm{b}\|^2_2 =
+        \|\A\x-\bm{b}\|^2_2$$ and so the norms of the residuals for
+        $\hat \x + \bm{w}$ and $\x$ are equivalent.
+
+	  \item Since a least-squares solution is the unique point in
+        $\vrange(\A)$ that minimizes $\|\bm{r}\|^2_2$, if $\bm{u}$ and
+        $\bm{v}$ minimize $\|\A\x-\bm{b}\|^2_2$, we must have
+        \begin{gather*}
+          \A\bm{u} - \bm{b} = \bm{r} \\
+          \A\bm{v} - \bm{b} = \bm{r}
+        \end{gather*}
+        By subtracting these we find
+        \[\begin{split}
+        \A\bm{u} - \A\bm{v} &= \bm{0} \\
+        \A(\bm{u} - \bm{v}) &= \bm{0}
+        \end{split}\]
+        Or in otherwords, $\bm{u} - \bm{v} \in N(\A)$.
+
+	  \item In this special case, we can use the normal equations to derive a solution xfor x:
+        \[\begin{split}
+        \A^T\A\hat \x &= \A^T\bm{b} \\
+        \bm{I}\hat \x &= \A^T\bm{b} \\
+        \hat \x &= \A^T\bm{b}
+        \end{split}\]
+	  \end{enumerate}
 
 	\item Suppose $\A\in\R^{m\times n}$, $m\geq n$, rank$(\A)=n$, and we have access to the reduced singular value decomposition (SVD) of $\A$:
-	\[
-		\A = \bm{\hat U \hat \Sigma V}^T.
-	\]
-	Here $\bm{\hat U}\in\R^{m\times n}$ has orthonormal columns (so $\bm{\hat U}^T\bm{\hat U}=\bm{I}\in\R^{n\times n}$, but $\bm{\hat U}$ is not orthogonal unless it is square), $\bm{\hat \Sigma}\in\R^{n\times n}$ is a diagonal matrix with positive entries on the diagonal, and $\bm{V}\in\R^{n\times n}$ is an orthogonal matrix.
+	  \[
+	  \A = \bm{\hat U \hat \Sigma} \bm{V}^T.
+	  \]
+	  Here $\bm{\hat U}\in\R^{m\times n}$ has orthonormal columns (so $\bm{\hat U}^T\bm{\hat U}=\bm{I}\in\R^{n\times n}$, but $\bm{\hat U}$ is not orthogonal unless it is square), $\bm{\hat \Sigma}\in\R^{n\times n}$ is a diagonal matrix with positive entries on the diagonal, and $\bm{V}\in\R^{n\times n}$ is an orthogonal matrix.
 
-	Derive a method of solving the least squares problem $\min_x\|\A\x-\bm{b}\|_2^2$ using the SVD of $\A$. You should end up with a linear equation to solve which involves at most one instance of $\bm{\hat U},~\bm{\hat\Sigma},$ and $\bm{V}$. Hint: plug the SVD of $\A$ into the normal equations.
+	  Derive a method of solving the least squares problem $\min_x\|\A\x-\bm{b}\|_2^2$ using the SVD of $\A$. You should end up with a linear equation to solve which involves at most one instance of $\bm{\hat U},~\bm{\hat\Sigma},$ and $\bm{V}$. Hint: plug the SVD of $\A$ into the normal equations.
 
-	\solution
-	Your solution here
+	  \solution Let's replace $\A$ with its SVD in the normal
+      equations. Note that we can apply both of our existing
+      identities $\bm{VV}^T = \bm{I}$ and $\bm{UU}^T = \bm{I}$. We
+      also know that $\bm{\hat \Sigma}$ is non-singular and therefore
+      invertible since it is a diagonal matrix with non-zero entries,
+      which allows us to remove it from both sides as needed.
+      \begin{align*}
+      \A^T\A\hat \x &= \A^T\bm{b} \\
+      (\bm{\hat U \hat \Sigma} \bm{V}^T)^T\bm{\hat U \hat \Sigma} \bm{V}^T \x &= (\bm{\hat U \hat \Sigma} \bm{V}^T)^T \bm{b} \\
+      \bm{V}\bm{\hat \Sigma}^T\bm{\hat U}^T \bm{\hat U \hat \Sigma} \bm{V}^T \x &= \bm{V}\bm{\hat \Sigma}^T\bm{\hat U}^T \bm{b} \\
+      \bm{V}\bm{\hat \Sigma}\bm{\hat U}^T \bm{\hat U \hat \Sigma} \bm{V}^T \x &= \bm{V}\bm{\hat \Sigma}\bm{\hat U}^T \bm{b} \\
+      \bm{V}\bm{\hat \Sigma}\bm{\hat \Sigma} \bm{V}^T \x &= \bm{V}\bm{\hat \Sigma}\bm{\hat U}^T \bm{b} \\
+      \bm{\hat \Sigma} \bm{V}^T \x &= \bm{\hat U}^T \bm{b} \\
+      \bm{V}^T  \x &= \bm{\hat \Sigma}^{-1} \bm{\hat U}^T \bm{b} \\
+      \x &= \bm{V} \bm{\hat \Sigma}^{-1} \bm{\hat U}^T \bm{b}
+      \end{align*}
+      
 
-\end{enumerate}
+    \end{enumerate}
 
-% 
-% Some potentially handy Matlab code
-% 
+    % 
+    % Some potentially handy Matlab code
+    % 
 
 
-%  Code used to make the table in problem 6
+    %  Code used to make the table in problem 6
 
 	% \begin{figure}
 	% 	\centering
@@ -125,7 +221,7 @@
 
 	
 
-% Some of the code from problem 7 in case you want to copy-paste
+    % Some of the code from problem 7 in case you want to copy-paste
 
 	% \begin{verbatim}
 	% 	A = fliplr(vander(x));
@@ -137,7 +233,7 @@
 	% \end{verbatim}
 
 
-% Some of the code from problem 8
+    % Some of the code from problem 8
 
 	% \begin{verbatim}
 	% 	figure()
@@ -156,7 +252,7 @@
 
 
 
-% Code from the bonus problem
+    % Code from the bonus problem
 	% \begin{verbatim}
 	% 	n = 15;                           % Number of interpolating points
 
@@ -165,7 +261,7 @@
 	% 	xfine = linspace(-1,1,1000);      % Set up a fine grid on which to plot interpolant
 
 	% 	c = polyfit(x,f(x),n-1);          % Solve the interpolation problem
-		
+	
 	% 	figure()                          % Plot the results
 	% 	hold on
 	% 	plot(x,f(x),'ro')
