@@ -172,10 +172,12 @@
 
 	  \solution Let's replace $\A$ with its SVD in the normal
       equations. Note that we can apply both of our existing
-      identities $\bm{VV}^T = \bm{I}$ and $\bm{UU}^T = \bm{I}$. We
-      also know that $\bm{\hat \Sigma}$ is non-singular and therefore
-      invertible since it is a diagonal matrix with non-zero entries,
-      which allows us to remove it from both sides as needed.
+      identities $\bm{VV}^T = \bm{I}$ and $\bm{UU}^T = \bm{I}$ to
+      reduce both sides. We also know that $\bm{\hat \Sigma}$ is
+      non-singular and therefore invertible since it is a diagonal
+      matrix with non-zero entries, which allows us to remove it from
+      both sides as needed. We also observe that $\bm{\hat \Sigma}^T =
+      \bm{\hat \Sigma}$.
       \begin{align*}
       \A^T\A\hat \x &= \A^T\bm{b} \\
       (\bm{\hat U \hat \Sigma} \bm{V}^T)^T\bm{\hat U \hat \Sigma} \bm{V}^T \x &= (\bm{\hat U \hat \Sigma} \bm{V}^T)^T \bm{b} \\
@@ -189,97 +191,5 @@
       
 
     \end{enumerate}
-
-    % 
-    % Some potentially handy Matlab code
-    % 
-
-
-    %  Code used to make the table in problem 6
-
-	% \begin{figure}
-	% 	\centering
-	% 	\begin{tabular}{|c|c|}
-	% 		\hline
-	% 		Years after 1900 (t) & Population (y) \\ \hline
-	% 		00	& 75.995 \\ \hline
-	% 		10	& 91.972 \\ \hline
-	% 		20	& 105.711 \\ \hline
-	% 		30	& 123.203 \\ \hline
-	% 		40	& 131.669 \\ \hline
-	% 		50	& 150.697 \\ \hline
-	% 		60	& 179.323 \\ \hline
-	% 		70	& 203.212 \\ \hline
-	% 		80	& 226.505 \\ \hline
-	% 		90	& 249.633 \\ \hline
-	% 		100	& 281.422 \\ \hline
-	% 		110	& 308.745 \\ \hline
-	% 	\end{tabular}
-	% 	\caption{Total population of the USA measured in millions}
-	% 	\label{fig:pop}
-	% \end{figure}
-
-	
-
-    % Some of the code from problem 7 in case you want to copy-paste
-
-	% \begin{verbatim}
-	% 	A = fliplr(vander(x));
-	% 	A = A(:,1:24);	
-	% \end{verbatim}
-
-	% \begin{verbatim}
-	% 	y = sin(5*x).';
-	% \end{verbatim}
-
-
-    % Some of the code from problem 8
-
-	% \begin{verbatim}
-	% 	figure()
-	% 	hold on          % Make it so that both plots appear on same figure
-	% 	plot(t,y,'ro')   % Plot the original data points as red circles
-	% 	t_fine = linspace(0,4,1000);            % Define a finer grid
-	% 	y_apx = polyval(flipud(c),t_fine);      % Evaluate approximation on fine grid
-	% 	plot(t_fine,y_apx)                      % Plot approximation
-	% \end{verbatim}
-
-
-	% \begin{verbatim}
-	% 	y_apx_ridge = polyval(flipud(c_ridge),t_fine);
-	% 	plot(t_fine,y_apx_ridge)
-	% \end{verbatim}
-
-
-
-    % Code from the bonus problem
-	% \begin{verbatim}
-	% 	n = 15;                           % Number of interpolating points
-
-	% 	x = linspace(-1,1,n);             % Set up the interpolating points
-	% 	f = @(x) 1 ./ (1 + (3*x).^2);     % Define the function f as above
-	% 	xfine = linspace(-1,1,1000);      % Set up a fine grid on which to plot interpolant
-
-	% 	c = polyfit(x,f(x),n-1);          % Solve the interpolation problem
-	
-	% 	figure()                          % Plot the results
-	% 	hold on
-	% 	plot(x,f(x),'ro')
-	% 	plot(xfine,polyval(c,xfine))
-	% 	title('Uniformly spaced points')
-	% 	hold off
-	% \end{verbatim}
-
-	% \begin{verbatim}
-	% 	xcheb = cos(pi*(0:(n-1)) / (n-1));          % Define Chebyshev points
-	% 	ccheb = polyfit(xcheb,f(xcheb),n-1);        % Solve interpolation problem
-
-	% 	figure()                                    % Plot results
-	% 	hold on
-	% 	plot(xcheb,f(xcheb),'ro')
-	% 	plot(xfine,polyval(ccheb,xfine))
-	% 	title('Chebyshev points')
-	% 	hold off
-	% \end{verbatim}
 
 \end{document}
